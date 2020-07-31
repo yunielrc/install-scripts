@@ -15,5 +15,5 @@ wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dis
 - vagrant
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/docker/docker-ubuntu | bash
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/vagrant/vagrant-ubuntu | bash
 ```

@@ -14,12 +14,10 @@ on_exit() {
 }
 trap on_exit INT TERM EXIT
 
-sudo apt update -y
-sudo apt install -y curl
 
-# Vagrant
+# Install docker
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/docker/docker-ubuntu | bash
+# Install Vagrant
 
 vagrant plugin install vagrant-aws
 vagrant plugin install vagrant-readenv
-
-# install docker
