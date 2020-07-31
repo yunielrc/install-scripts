@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# shellcheck disable=SC2154
 set -euEo pipefail
 
 set -o allexport
@@ -16,8 +16,8 @@ trap on_exit INT TERM EXIT
 
 
 # Install docker
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/docker/docker-ubuntu | bash
+wget -qO - "${iscript}/docker/docker-ubuntu" | bash
 # Install Vagrant
-
+wget -qO - "${iscript}/vagrant/vagrant-ubuntu" | bash
 vagrant plugin install vagrant-aws
 vagrant plugin install vagrant-readenv

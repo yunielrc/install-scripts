@@ -1,9 +1,5 @@
 # Install Scripts
 
-## About
-
-Installation scripts
-
 ## Usage
 
 - docker & docker-compose
