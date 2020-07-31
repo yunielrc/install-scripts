@@ -15,11 +15,11 @@ case "$1" in
   build-play)
     shift
     docker-compose build
-    docker-compose run --rm prod "$@"
+    docker-compose run --rm play "$@"
   ;;
   play)
     shift
-    docker-compose run --rm prod "$@"
+    docker-compose run --rm play "$@"
   ;;
   gui)
     shift

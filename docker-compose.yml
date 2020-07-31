@@ -17,6 +17,8 @@ x-base: &base
   user: "${USER_NAME}"
   volumes:
     - "./:${MOUNT}:ro"
+  environment:
+    - RUN_ON_DOCKER=true
   cap_add:
     - SYS_ADMIN
   devices:

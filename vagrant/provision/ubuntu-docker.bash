@@ -11,8 +11,8 @@ type -P docker &> /dev/null && {
 }
 
 # Dependencies
-sudo apt update -y
-sudo apt install -y \
+sudo apt-get update -y
+sudo apt-get install -y \
   apt-transport-https \
   ca-certificates \
   curl \
@@ -29,8 +29,8 @@ sudo add-apt-repository \
   stable"
 
 # Install
-sudo apt update -y
-sudo apt install -y docker-ce docker-ce-cli containerd.io
+sudo apt-get update -y
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # install docker compose
 readonly latest="$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | grep -P 'tag_name' | head -n 1 | sed 's/"//g' | grep -Po '\d+\.\d+\.\d+')"
