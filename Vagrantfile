@@ -18,7 +18,6 @@ Vagrant.configure("2") do |config|
     override.ssh.private_key_path = ENV['AWS_SSH_PRIVATE_KEY_PATH']
   end
 
-
   local_env = {}
   ENV.each do |attr_name, attr_value|
     local_env[attr_name] = attr_value
