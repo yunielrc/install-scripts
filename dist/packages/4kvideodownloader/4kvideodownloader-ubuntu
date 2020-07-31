@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euEo pipefail
+
+# Idempotent
+type -P 4kvideodownloader &> /dev/null && {
+  echo '4kvideodownloader currently installed'
+  exit 0
+}
+
+# Download & Install
+readonly url="$(wget -qO - https://www.4kdownload.com/downloads | grep -Po 'https://dl.4kdownload.com/app/4kvideodownloader_\d+\.\d+\.\d+-\d+_amd64.deb' | head -n 1)"
+
+readonly tmp_dir="$(mktemp -d)"
+cd "$tmp_dir"
+
+on_exit() {
+  rm -rf "$tmp_dir"
+}
+trap on_exit INT TERM EXIT
+
+wget "$url" -O 4kvideodownloader.deb
+sudo apt-get install -y ./4kvideodownloader.deb

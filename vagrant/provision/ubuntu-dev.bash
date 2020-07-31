@@ -3,7 +3,7 @@
 set -euEo pipefail
 
 export DEBIAN_FRONTEND=noninteractive
-echo "export LIBS=/usr/local/lib" >> "/home/${USER_NAME}/.bashrc"
+echo "export LIBS_DIR=/usr/local/lib" >> "/home/${USER_NAME}/.bashrc"
 
 sudo -s <<EOF
 apt-get update -y

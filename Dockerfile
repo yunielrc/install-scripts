@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN [ -n "$APT_PROXY" ] && echo "$APT_PROXY" | sed "s/'//g" > '/etc/apt/apt.conf.d/00proxy' || :
 RUN apt-get update -y && \
     apt-get install -y wget file sudo xz-utils uuid-runtime gnupg tzdata 9base unzip curl && \
-    apt install -y --no-install-recommends ubuntu-desktop-minimal && \
+    apt-get install -y --no-install-recommends ubuntu-desktop-minimal && \
     apt-get autoremove -y && \
     apt-get autoclean -y && \
     rm -rf /var/lib/apt/lists/* && \
@@ -20,7 +20,7 @@ RUN apt-get update -y && \
     echo 'XKBMODEL="pc105"\nXKBLAYOUT="us"\nXKBVARIANT="alt-intl"\nBACKSPACE="guess"' > /etc/default/keyboard
 
 FROM base as dev
-ENV LIBS=/usr/local/lib
+ENV LIBS_DIR=/usr/local/lib
 RUN apt-get update -y && \
     apt-get install -y git shellcheck build-essential && \
     apt-get autoremove -y && \

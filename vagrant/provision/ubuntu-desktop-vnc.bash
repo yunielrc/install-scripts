@@ -35,7 +35,7 @@ chmod 700 ~/.vnc/xstartup
 
 cat <<EOF > ~/vncserver-start
 #!/usr/bin/env bash
-vncserver :1 -passwd /home/${USER}/.dotfiles/passwd -localhost no -geometry 1024x768 -depth 32
+vncserver :1 -passwd ${WORKDIR}/passwd -localhost no -geometry 1024x768 -depth 32
 EOF
 chmod +x ~/vncserver-start
 

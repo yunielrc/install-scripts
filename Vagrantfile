@@ -39,8 +39,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "./vagrant/provision/ubuntu-base.bash", privileged: false, env: local_env
 
   # this vm is not reusable, everything runs directly inside the vm
-  config.vm.define "dev", autostart: false do |dev|
-    dev.vm.provision "shell", path: "./vagrant/provision/ubuntu-dev.bash", privileged: false, env: local_env
+  config.vm.define "vm", autostart: false do |vm|
+    vm.vm.provision "shell", path: "./vagrant/provision/ubuntu-dev.bash", privileged: false, env: local_env
   end
   # this vm is reusable, everything runs inside docker
   config.vm.define "docker", autostart: false do |docker|

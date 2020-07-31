@@ -22,7 +22,8 @@ brew install patchelf
 brew install gcc
 
 cat <<'EOF' >> ~/.bashrc
-# brew
+
+# BREW
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/isl@0.18/lib"
@@ -39,5 +40,5 @@ if type brew &>/dev/null; then
     done
   fi
 fi
-# :brew
+# :BREW
 EOF

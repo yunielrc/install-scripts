@@ -7,7 +7,7 @@ export DEBIAN_FRONTEND=noninteractive
 echo "cd ${WORKDIR}" >> "/home/${USER_NAME}/.bashrc"
 
 # APT cache proxy
-[[ -n "$APT_PROXY" ]] && echo "$APT_PROXY" | sudo tee /etc/apt/apt.conf.d/00proxy
+[[ -n "${APT_PROXY:-}" ]] && echo "${APT_PROXY:-}" | sudo tee /etc/apt/apt.conf.d/00proxy
 
 sudo -s <<EOF
 # System update
