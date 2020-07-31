@@ -2,6 +2,7 @@ load test_helper
 
 
 @test 'should install docker-ubuntu' {
+  [[ "$RUN_ON_DOCKER" == true ]] && skip
   bash ../docker-ubuntu
 
   type -P docker
@@ -9,8 +10,5 @@ load test_helper
 
   sudo docker run hello-world
 
-  run bash ../docker-ubuntu
-
-  assert_success
-  assert_output --partial 'docker currently installed'
+  bash ../docker-ubuntu | grep -q 'docker currently installed'
 }

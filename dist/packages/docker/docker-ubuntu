@@ -2,8 +2,6 @@
 
 set -euEo pipefail
 
-export DEBIAN_FRONTEND=noninteractive
-
 # Idempotent
 type -P docker &> /dev/null && {
   echo 'docker currently installed'
