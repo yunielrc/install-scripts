@@ -1,0 +1,40 @@
+#!/bin/bash
+
+readonly SCRIPT="$(basename "$0")"
+
+case "$1" in
+  build-test)
+    shift
+    docker-compose build
+    docker-compose run --rm test "$@"
+  ;;
+  test)
+    shift
+    docker-compose run --rm test "$@"
+  ;;
+  build-play)
+    shift
+    docker-compose build
+    docker-compose run --rm prod "$@"
+  ;;
+  play)
+    shift
+    docker-compose run --rm prod "$@"
+  ;;
+  gui)
+    shift
+    docker-compose up gui
+  ;;
+  host)
+    echo "hostname: $(hostname)"
+  ;;
+  *)
+    cat <<-EOF
+    $SCRIPT test
+    $SCRIPT test ./dist/packages/docker/test/setup.bats
+    $SCRIPT play
+    $SCRIPT build-test
+    $SCRIPT build-play
+EOF
+  ;;
+esac
