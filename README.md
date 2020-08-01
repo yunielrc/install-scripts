@@ -8,6 +8,12 @@
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/4kvideodownloader/4kvideodownloader-ubuntu | bash
 ```
 
+- aws-cli
+
+```sh
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/aws-cli/aws-cli-linux | bash
+```
+
 - brew
 
 ```sh
@@ -25,7 +31,6 @@ wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dis
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/vagrant/vagrant-ubuntu | bash
 ```
-
 
 ## If you want to test
 
