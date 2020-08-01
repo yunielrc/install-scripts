@@ -18,16 +18,7 @@ Vagrant.configure("2") do |config|
     override.ssh.private_key_path = ENV['AWS_SSH_PRIVATE_KEY_PATH']
   end
 
-  local_env = {}
-  ENV.each do |attr_name, attr_value|
-    local_env[attr_name] = attr_value
-  end
-
-  local_env['APT_PROXY'] = ''
-  # for security
-  local_env['AWS_ACCESS_KEY_ID'] = ''
-  local_env['AWS_SECRET_ACCESS_KEY'] = ''
-
+  local_env = { 'WORKDIR' => ENV['WORKDIR'] }
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.synced_folder ".", ENV['WORKDIR'], type: "rsync", rsync__exclude: ".git/", rsync__auto: true
 

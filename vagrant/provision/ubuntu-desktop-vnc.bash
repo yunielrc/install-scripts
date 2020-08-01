@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-set -euE
+set -euEo pipefail
+
+set -o allexport
+. "${WORKDIR}/.env"
+set +o allexport
 
 export DEBIAN_FRONTEND=noninteractive
 

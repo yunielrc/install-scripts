@@ -2,6 +2,10 @@
 
 set -euEo pipefail
 
+set -o allexport
+. "${WORKDIR}/.env"
+set +o allexport
+
 export DEBIAN_FRONTEND=noninteractive
 
 echo "cd ${WORKDIR}" >> "/home/${USER_NAME}/.bashrc"
