@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -euE
+
+# Idempotent
+type -P aws &> /dev/null && {
+  echo 'aws-cli currently installed'
+  exit 0
+}
+
+# setup
+readonly tmp_dir="$(mktemp -d)"
+cd "$tmp_dir"
+
+on_exit() {
+  rm -rf "$tmp_dir"
+}
+trap on_exit INT TERM EXIT
+# Download
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip
+unzip -q awscliv2.zip
+
+# Install
+sudo ./aws/install
+
+cat <<'EOF' >> ~/.bashrc
+# aws-cli
+## Completions
+complete -C aws_completer aws
+# :aws-cli
+EOF
