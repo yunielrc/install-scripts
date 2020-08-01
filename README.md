@@ -67,7 +67,7 @@ $ vagrant up docker --provision --provider=aws
 $ vagrant ssh docker
 # test specific installation script
 > on-remote $ ./dcrun test ./dist/packages/vagrant/test/vagrant.bats
-# test all installation script
+# test all installation scripts
 > on-remote $ ./dcrun test
 > on-remote $ exit
 $ vagrant halt -f docker # OR $ vagrant destroy -f docker
@@ -80,7 +80,7 @@ $ vagrant up vm --provision --provider=aws
 $ vagrant ssh vm
 # test specific installation script
 > on-remote $ ./scripts/test ./dist/packages/vagrant/test/vagrant.bats
-# test all installation script
+# test all installation scripts
 > on-remote $ ./scripts/test
 > on-remote $ exit
 $ vagrant destroy -f vm
