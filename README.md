@@ -2,37 +2,65 @@
 
 ## Usage
 
-- 4kvideodownloader (GUI)
+- **4kvideodownloader** (GUI)
+
+ubuntu:
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/4kvideodownloader/4kvideodownloader-ubuntu | bash
 ```
 
-- aws-cli
+- **aws-cli**
+
+linux:
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/aws-cli/aws-cli-linux | bash
 ```
 
-- brew
+- **brew**
+
+ubuntu:
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/brew/brew-ubuntu | bash
 ```
 
-- docker & docker-compose
+- **docker & docker-compose**
+
+ubuntu:
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/docker/docker-ubuntu | bash
 ```
 
-- vagrant
+- **electrum**
+
+linux:
+
+```sh
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/electrum/electrum-linux | bash
+```
+
+- **google-chrome**
+
+ubuntu:
+
+```sh
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/google-chrome/google-chrome-ubuntu | bash
+```
+
+- **vagrant**
+
+ubuntu:
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/vagrant/vagrant-ubuntu | bash
 ```
 
 ## If you want to test
+
+OS: ubuntu 20.04
 
 ### Prerequisites
 
