@@ -46,7 +46,7 @@ $ vim .env # ... put your settings
 
 ### Testing
 
-- Local testing inside docker
+- **Local** testing inside **docker container**
 
 ```sh
 # test specific installation script
@@ -55,7 +55,7 @@ $ ./dcrun test ./dist/packages/vagrant/test/vagrant.bats
 $ ./dcrun test
 ```
 
-- Remote testing inside a docker container (reusable environment)
+- **Remote** testing inside a **docker container** (reusable environment)
 
 ```sh
 $ vagrant up docker --provision --provider=aws
@@ -68,7 +68,7 @@ $ vagrant ssh docker
 $ vagrant halt -f docker # OR $ vagrant destroy -f docker
 ```
 
-- Remote testing directly in the virtual machine (not reusable environment)
+- **Remote** testing directly in the **virtual machine** (not reusable environment)
 
 ```sh
 $ vagrant up vm --provision --provider=aws
@@ -81,7 +81,7 @@ $ vagrant ssh vm
 $ vagrant destroy -f vm
 ```
 
-- Remote testing gui apps directly in the virtual machine with a vnc server (not reusable environment)
+- **Remote** testing gui apps directly in the **virtual machine with a vnc server** (not reusable environment)
 
 ```sh
 $ vagrant up vnc --provision --provider=aws
