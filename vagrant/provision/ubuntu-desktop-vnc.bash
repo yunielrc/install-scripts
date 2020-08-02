@@ -2,6 +2,11 @@
 
 set -euEo pipefail
 
+type -P vncserver &> /dev/null && {
+  echo 'vncserver currently installed'
+  exit 0
+}
+
 set -o allexport
 . "${WORKDIR}/.env"
 set +o allexport
