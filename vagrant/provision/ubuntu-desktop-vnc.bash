@@ -66,3 +66,6 @@ EOF
 ~/vncserver-start
 ~/vncserver-list
 # disown %%
+
+
+echo -e "\n>>RUN: vncviewer $(dig +short myip.opendns.com @resolver1.opendns.com):5901"

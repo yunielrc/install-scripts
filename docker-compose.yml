@@ -40,7 +40,7 @@ services:
     <<: *base
     build:
       <<: *build
-      target: base
+      target: dev
     entrypoint: "/bin/bash"
 
   gui:
