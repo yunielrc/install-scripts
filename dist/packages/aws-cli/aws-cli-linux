@@ -29,3 +29,9 @@ cat <<'EOF' >> ~/.bashrc
 complete -C aws_completer aws
 # :aws-cli
 EOF
+
+cat <<'EOF'
+
+>> For help setting up AWS Cli visit:
+https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
+EOF
