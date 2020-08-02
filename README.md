@@ -36,17 +36,12 @@ wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dis
 
 ### Prerequisites
 
-Before testing you need:
+before testing you need to do this:
 
 ```sh
 $ git clone https://github.com/yunielrc/install-scripts.git && cd ./install-scripts
-$ ./setup-devenv
-```
-
-And configure:
-
-```sh
-$ vim .env
+$ ./setup-devenv # setup your development environment
+$ vim .env # ... put your settings
 ```
 
 ### Testing
@@ -60,7 +55,7 @@ $ ./dcrun test ./dist/packages/vagrant/test/vagrant.bats
 $ ./dcrun test
 ```
 
-- Remote testing inside docker container (reusable environment)
+- Remote testing inside a docker container (reusable environment)
 
 ```sh
 $ vagrant up docker --provision --provider=aws
@@ -73,7 +68,7 @@ $ vagrant ssh docker
 $ vagrant halt -f docker # OR $ vagrant destroy -f docker
 ```
 
-- Remote testing directly in a vm (not reusable environment)
+- Remote testing directly in the virtual machine (not reusable environment)
 
 ```sh
 $ vagrant up vm --provision --provider=aws
@@ -86,7 +81,7 @@ $ vagrant ssh vm
 $ vagrant destroy -f vm
 ```
 
-- Remote testing gui apps directly in a vm with a vnc server (not reusable environment)
+- Remote testing gui apps directly in the virtual machine with a vnc server (not reusable environment)
 
 ```sh
 $ vagrant up vnc --provision --provider=aws
@@ -97,6 +92,7 @@ $ vagrant ssh vnc
 > on-remote $ dig +short myip.opendns.com @resolver1.opendns.com
 > on-remote $ exit
 $ vncviewer DIG_OUTPUT_HERE:5901
+# on remote: launch 4k video downloader app
 # later, when testing is done run:
 $ vagrant destroy -f vnc
 ```
