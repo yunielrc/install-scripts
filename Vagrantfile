@@ -37,8 +37,10 @@ Vagrant.configure("2") do |config|
   config.vm.define "docker", autostart: false do |docker|
     docker.vm.provision "shell", path: "#{ENV['iscript']}/docker/docker-ubuntu", privileged: false
   end
+
   # this vm is not reusable, everything runs directly inside the vm
   config.vm.define "vnc", autostart: false do |vnc|
+    vnc.vm.provision "shell", path: "./vagrant/provision/ubuntu-dev.bash", privileged: false, env: local_env
     vnc.vm.provision "shell", path: "./vagrant/provision/ubuntu-desktop-vnc.bash", privileged: false, env: local_env
   end
 end
