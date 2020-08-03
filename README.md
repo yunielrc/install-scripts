@@ -50,6 +50,14 @@ ubuntu:
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/google-chrome/google-chrome-ubuntu | bash
 ```
 
+- **popcorn-time**
+
+ubuntu:
+
+```sh
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/popcorn-time/popcorn-time-ubuntu | bash
+```
+
 - **vagrant**
 
 ubuntu:

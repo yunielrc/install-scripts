@@ -4,6 +4,7 @@ set -euEo pipefail
 
 [[ -x /opt/Popcorn-Time/Popcorn-Time ]] && {
   echo 'Popcorn-Time currently installed'
+  exit 0
 }
 
 # Download & Install
