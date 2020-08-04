@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+
+set -euEo pipefail
+
+name='StarUML'
+readonly app_image="${name}-x86_64.AppImage"
+readonly app_icon="${name,,}"
+readonly app_desktop="${name}.desktop"
+
+mkdir --parents ~/.local/{bin,share/applications,share/icons} || :
+
+readonly dest_base_dir="$(realpath ~/.local)"
+readonly app_image_dest_dir="${dest_base_dir}/bin"
+readonly app_desktop_dest_dir="${dest_base_dir}/share/applications"
+readonly app_icon_dest_dir="${dest_base_dir}/share/icons"
+
+# Idempotent
+[[ -x "${app_image_dest_dir}/${app_image}" ]] && {
+  echo "${app_image} currently installed"
+  exit 0
+}
+
+readonly tmp_dir="$(mktemp -d)"
+cd "$tmp_dir"
+
+on_exit() {
+  rm -rf "$tmp_dir"
+}
+trap on_exit INT TERM EXIT
+
+# Dependencies
+sudo apt-get update -y
+sudo apt-get install -y curl
+
+# Download
+readonly url="http://staruml.io/$(wget -qO - http://staruml.io/download | grep -Po 'download/releases/StarUML-\d+\.\d+\.\d+\.AppImage' | head -n 1)"
+wget "$url" -O "$app_image"
+
+# Patch
+# dependencies
+
+type -P npx &> /dev/null || {
+  curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+  sudo apt-get install -y nodejs build-essential
+}
+
+readonly appimagetool_url="$(curl --silent https://api.github.com/repos/AppImage/AppImageKit/releases/latest | sed 's/"//g' | grep -P 'browser_download_url:\s+.+appimagetool-x86_64.AppImage' | grep -Po 'https://.*appimagetool-x86_64.AppImage$')"
+readonly appimagetool=appimagetool-x86_64.AppImage
+
+wget "$appimagetool_url" -O "$appimagetool"
+chmod --verbose +x ./*.AppImage
+
+"./${app_image}" --appimage-extract
+rm --verbose "./${app_image}"
+
+cd ./squashfs-root/resources
+npx asar extract ./app.asar app
+rm --verbose ./app.asar
+
+cat <<EOF | patch -u ./app/src/engine/license-manager.js -i -
+--- squashfs-root/resources/app/src/engine/license-manager.js	2020-07-27 18:02:42.156232792 -0400
++++ squashfs-root-modified/resources/app/src/engine/license-manager.js	2020-07-27 18:05:14.048895257 -0400
+@@ -126,8 +126,8 @@
+     this.validate().then(() => {
+       setStatus(this, true)
+     }, () => {
+-      setStatus(this, false)
+-      UnregisteredDialog.showDialog()
++      setStatus(this, true)
++      // UnregisteredDialog.showDialog()
+     })
+   }
+
+EOF
+npx asar pack ./app app.asar
+rm -rf ./app
+
+cd "$tmp_dir"
+
+"./${appimagetool}" ./squashfs-root/ "$app_image"
+
+# Install
+chmod --verbose +x "$app_image"
+mv --verbose "$app_image" "$app_image_dest_dir"
+wget "https://github.com/yunielrc/install-scripts/raw/master/dist/packages/staruml/content/${app_icon}.png" -O "${app_icon_dest_dir}/${app_icon}.png"
+
+cat <<EOF > "${app_desktop_dest_dir}/${app_desktop}"
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=${name}
+Comment=A sophisticated software modeler
+Categories=Development;
+Keywords=DEV;uml;desarrollo;design;diseño;arquitectura;4c;model;
+Exec=${app_image_dest_dir}/${app_image}
+Icon=${app_icon}
+Terminal=false
+Type=Application
+StartupWMClass=staruml
+EOF
