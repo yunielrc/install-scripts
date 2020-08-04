@@ -66,6 +66,22 @@ linux:
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/postman/postman-linux | bash
 ```
 
+- **staruml**
+
+linux:
+
+```sh
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/staruml/staruml-linux | bash
+```
+
+- **stremio**
+
+ubuntu:
+
+```sh
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/stremio/stremio-linux | bash
+```
+
 - **vagrant**
 
 ubuntu:
