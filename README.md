@@ -82,6 +82,14 @@ ubuntu:
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/stremio/stremio-linux | bash
 ```
 
+- **telegram**
+
+ubuntu:
+
+```sh
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/telegram/telegram-linux | bash
+```
+
 - **vagrant**
 
 ubuntu:
