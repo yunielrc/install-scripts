@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -euEo pipefail
+
+# Idempotent
+readonly install_dir=/opt/Postman
+
+[[ -x "${install_dir}/Postman" ]] && {
+  echo 'Postman currently installed'
+  exit 0
+}
+
+# Download & Install
+wget -qO - 'https://dl.pstmn.io/download/latest/linux64' | sudo tar -xzf - -C /opt
+#
+sudo chmod --verbose +x "${install_dir}/app/Postman"
+sudo chown -R "${USER}:${USER}" "${install_dir}"
+
+cat <<EOF | sudo tee /usr/share/applications/Postman.desktop
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Postman
+Comment=Make and view REST API calls and responses
+Categories=Development;
+Keywords=DEV;api;desarrollo;development;test;testing;
+Exec=${install_dir}/Postman %U
+Icon=${install_dir}/app/resources/app/assets/icon.png
+Terminal=false
+Type=Application
+MimeType=text/html;x-scheme-handler/postman;
+EOF

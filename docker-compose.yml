@@ -19,6 +19,7 @@ x-base: &base
     - "./:${MOUNT}:ro"
   environment:
     - RUN_ON_DOCKER=true
+    - USER=${USER_NAME}
   cap_add:
     - SYS_ADMIN
   devices:

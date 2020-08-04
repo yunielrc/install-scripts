@@ -58,6 +58,14 @@ ubuntu:
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/popcorn-time/popcorn-time-ubuntu | bash
 ```
 
+- **postman**
+
+linux:
+
+```sh
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/postman/postman-linux | bash
+```
+
 - **vagrant**
 
 ubuntu:
