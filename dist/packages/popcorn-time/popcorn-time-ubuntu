@@ -7,6 +7,10 @@ set -euEo pipefail
   exit 0
 }
 
+# Dependencies
+sudo apt-get update -y
+sudo apt-get install -y curl
+
 # Download & Install
 readonly url="$(curl --silent https://api.github.com/repos/popcorn-official/popcorn-desktop/releases/latest | sed 's/"//g' | grep -P 'browser_download_url:\s+.+Popcorn-Time-.+-amd64.deb' | grep -Po 'https://.*Popcorn-Time-.+-amd64.deb$')"
 
