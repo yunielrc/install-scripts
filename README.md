@@ -84,7 +84,7 @@ wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dis
 
 - **telegram**
 
-ubuntu:
+linux:
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/telegram/telegram-linux | bash
@@ -97,6 +97,15 @@ ubuntu:
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/vagrant/vagrant-ubuntu | bash
 ```
+
+- **vscode**
+
+ubuntu:
+
+```sh
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/vscode/vscode-ubuntu | bash
+```
+
 
 ## If you want to test
 
