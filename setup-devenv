@@ -14,6 +14,9 @@ set -o allexport
 . ./.env
 set +o allexport
 
+# Add git hooks
+ln -sf ../scripts/git-hooks .git/hooks
+
 sudo apt-get update -y
 sudo apt-get install -y uuid-runtime
 

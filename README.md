@@ -4,15 +4,11 @@
 
 - **4kvideodownloader** (GUI)
 
-ubuntu:
-
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/4kvideodownloader/4kvideodownloader-ubuntu | bash
 ```
 
 - **aws-cli**
-
-linux:
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/aws-cli/aws-cli-linux | bash
@@ -20,71 +16,53 @@ wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dis
 
 - **brew**
 
-ubuntu:
-
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/brew/brew-ubuntu | bash
 ```
 
-- **docker & docker-compose**
-
-ubuntu:
+- **docker**
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/docker/docker-ubuntu | bash
 ```
 
-- **electrum**
-
-linux:
+- **electrum** (GUI)
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/electrum/electrum-linux | bash
 ```
 
-- **google-chrome**
-
-ubuntu:
+- **google-chrome** (GUI)
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/google-chrome/google-chrome-ubuntu | bash
 ```
 
-- **popcorn-time**
-
-ubuntu:
+- **popcorn-time** (GUI)
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/popcorn-time/popcorn-time-ubuntu | bash
 ```
 
-- **postman**
-
-linux:
+- **postman** (GUI)
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/postman/postman-linux | bash
 ```
 
-- **staruml**
-
-linux:
+- **staruml** (GUI)
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/staruml/staruml-linux | bash
 ```
 
-- **stremio**
-
-ubuntu:
+- **stremio** (GUI)
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/stremio/stremio-linux | bash
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/stremio/stremio-ubuntu | bash
 ```
 
-- **telegram**
-
-linux:
+- **telegram** (GUI)
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/telegram/telegram-linux | bash
@@ -92,20 +70,15 @@ wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dis
 
 - **vagrant**
 
-ubuntu:
-
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/vagrant/vagrant-ubuntu | bash
 ```
 
-- **vscode**
-
-ubuntu:
+- **vscode** (GUI)
 
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/vscode/vscode-ubuntu | bash
 ```
-
 
 ## If you want to test
 
@@ -173,3 +146,4 @@ $ vncviewer DIG_OUTPUT_HERE:5901
 # later, when testing is done run:
 $ vagrant destroy -f vnc
 ```
+

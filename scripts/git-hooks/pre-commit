@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euEo pipefail
+
+./scripts/lint-shellcheck
+./scripts/gen-readme
+git add README.md
