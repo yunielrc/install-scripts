@@ -26,5 +26,6 @@ wget "$url" -O stremio_amd64.deb
 sudo apt-get update -y
 sudo apt-get install -y ./stremio_amd64.deb
 
+# for ubuntu 20.04
 wget http://archive.ubuntu.com/ubuntu/pool/universe/x/x264/libx264-152_0.152.2854+gite9a5903-2_amd64.deb
 sudo apt-get install -y ./libx264-152_0.152.2854+gite9a5903-2_amd64.deb

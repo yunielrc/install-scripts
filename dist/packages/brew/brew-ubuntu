@@ -3,7 +3,7 @@
 set -euEo pipefail
 
 # Idempotent
-[[ -f /home/linuxbrew/.linuxbrew/bin/brew ]] && {
+[[ -x /home/linuxbrew/.linuxbrew/bin/brew ]] && {
   echo 'brew currently installed'
   exit 0
 }
@@ -24,7 +24,6 @@ brew install gcc
 cat <<'EOF' >> ~/.bashrc
 
 # BREW
-
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/isl@0.18/lib"
 # export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/isl@0.18/include"

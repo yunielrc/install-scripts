@@ -24,10 +24,11 @@ unzip -q awscliv2.zip
 sudo ./aws/install
 
 cat <<'EOF' >> ~/.bashrc
-# aws-cli
+
+# AWS-CLI
 ## Completions
 complete -C aws_completer aws
-# :aws-cli
+# :AWS-CLI
 EOF
 
 cat <<'EOF'
