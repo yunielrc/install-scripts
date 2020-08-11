@@ -1,3 +1,6 @@
+<!-- DON'T EDIT HERE, THIS IS GENERATED ON COMMIT -->
+<!-- EDIT: $ vim ./scripts/gen-readme -->
+
 # Install Scripts
 
 ## Usage
