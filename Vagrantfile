@@ -2,13 +2,12 @@ require_relative 'vagrant/patches.rb'
 
 Vagrant.configure("2") do |config|
 
+  config.vm.box = "dummy"
   config.env.enable
   local_env = { 'WORKDIR' => ENV['AWS_WORKDIR'] }
   local_env['USER_NAME'] = ENV['AWS_SSH_USER']
 
   config.vm.provider "aws" do |aws, override|
-    override.vm.box = "dummy"
-
     aws.access_key_id = ENV['AWS_ACCESS_KEY_ID']
     aws.secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
     aws.instance_type = ENV['AWS_INSTANCE_TYPE']
