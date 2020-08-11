@@ -7,9 +7,15 @@ set -o allexport
 set +o allexport
 
 export DEBIAN_FRONTEND=noninteractive
-echo "export LIBS_DIR=/usr/local/lib" >> "/home/${USER_NAME}/.bashrc"
 
-sudo -s <<EOF
+readonly text="export LIBS_DIR=/usr/local/lib"
+readonly file="/home/${USER_NAME}/.bashrc"
+
+if ! grep -q "$text" "$file"; then
+  echo "$text" >> "$file"
+  chown "${USER_NAME}:${USER_NAME}" "$file"
+fi
+
 apt-get update -y
 apt-get install -y git shellcheck build-essential
 
@@ -26,5 +32,3 @@ git clone https://github.com/bats-core/bats-support.git /usr/local/lib/bats-supp
 apt-get autoremove -y
 apt-get autoclean -y
 rm -rf /var/lib/apt/lists/*
-EOF
-

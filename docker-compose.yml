@@ -6,20 +6,20 @@ x-build: &build
   args:
     VERSION: '20.04'
     APT_PROXY: "${APT_PROXY}"
-    USER: "${USER_NAME}"
-    WORKDIR: "${WORKDIR}"
+    USER: "${DOCKER_USER}"
+    WORKDIR: "${DOCKER_WORKDIR}"
   target: dev
 
 x-base: &base
   env_file: .env
   container_name: "${PRODUCT_NAME}"
-  working_dir: "${WORKDIR}"
-  user: "${USER_NAME}"
+  working_dir: "${DOCKER_WORKDIR}"
+  user: "${DOCKER_USER}"
   volumes:
-    - "./:${MOUNT}:ro"
+    - "./:${DOCKER_MOUNT}:ro"
   environment:
     - RUN_ON_DOCKER=true
-    - USER=${USER_NAME}
+    - USER=${DOCKER_USER}
   cap_add:
     - SYS_ADMIN
   devices:
@@ -52,7 +52,7 @@ services:
       - '5900:5900'
     environment:
       - VNC_PASSWORD=${VNC_PASSWORD}
-      - USER=${USER_NAME}
+      - USER=${DOCKER_USER}
     volumes:
       - '/dev/shm:/dev/shm'
-      - "./:${MOUNT}:ro"
+      - "./:${DOCKER_MOUNT}:ro"
