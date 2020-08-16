@@ -1,17 +1,14 @@
 require_relative 'vagrant/patches.rb'
 
-# TODO: dejar funcional
-
 Vagrant.configure("2") do |config|
 
   config.vm.box = "ubuntu/focal64"
   config.env.enable
-
   local_env = { 'WORKDIR' => ENV['VAGRANT_WORKDIR'] }
   local_env['USER_NAME'] = ENV['VAGRANT_SSH_USER']
 
   config.vm.provider "virtualbox" do |vb, override|
-    vb.gui = true
+    # vb.gui = true
     vb.linked_clone = true
     vb.memory = 4096
     vb.cpus = 2
