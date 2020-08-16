@@ -20,7 +20,9 @@ trap on_exit INT TERM EXIT
 sudo apt-get update -y
 sudo apt-get install -y curl
 
+# Download
 readonly latest="$(curl --silent "https://api.github.com/repos/hashicorp/vagrant/tags" | sed 's/\"//g' | grep -P 'name\:\s+v\d+\.\d+\.\d+,' | grep -Po '\d+\.\d+\.\d+' | head -n 1)"
 wget "https://releases.hashicorp.com/vagrant/${latest}/vagrant_${latest}_x86_64.deb" -O vagrant_x86_64.deb
 
+# Install
 sudo apt-get install -y ./vagrant_x86_64.deb

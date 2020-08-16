@@ -17,6 +17,8 @@ cat <<'EOF'
 
 # Install Scripts
 
+Install apps in easy way from the command line
+
 ## Usage
 
 EOF

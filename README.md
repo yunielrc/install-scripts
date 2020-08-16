@@ -3,6 +3,8 @@
 
 # Install Scripts
 
+Install apps in easy way from the command line
+
 ## Usage
 
 - **4kvideodownloader** (GUI)
