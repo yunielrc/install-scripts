@@ -21,7 +21,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 brew install gcc
 
 # install for all users, except root
-cat <<'EOF' | sudo tee -a /etc/bash.bashrc
+cat <<'EOF' | sudo tee -a ~/.bashrc
 
 # BREW
 if [[ "$USER" != root ]]; then
