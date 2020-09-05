@@ -22,17 +22,10 @@ brew install gcc
 
 # install for all users, except root
 
-BASH_PROFILE=''
+BASH_PROFILE=~/.bash_profile
+[[ ! -f ~/.bash_profile ]] && BASH_PROFILE=~/.profile
 
-if [[ -f ~/.profile ]]; then
-  BASH_PROFILE=~/.profile
-elif [[ -f ~/.bash_profile ]]; then
-  BASH_PROFILE=~/.bash_profile
-else
-  BASH_PROFILE=~/.bash_login
-fi
-
-grep --quiet '/home/linuxbrew/.linuxbrew/bin/brew shellenv' "$BASH_PROFILE" && exit 0
+[[ -f "$BASH_PROFILE" ]] && grep --quiet '/home/linuxbrew/.linuxbrew/bin/brew shellenv' "$BASH_PROFILE" && exit 0
 
 cat <<'EOF' >> "$BASH_PROFILE"
 

@@ -29,7 +29,7 @@ cat <<'EOF'
 https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
 EOF
 
-grep --quiet 'complete -C aws_completer aws' ~/.bashrc && exit 0
+[[ -f ~/.bashrc ]] && grep --quiet 'complete -C aws_completer aws' ~/.bashrc && exit 0
 
 cat <<'EOF' >> ~/.bashrc
 
