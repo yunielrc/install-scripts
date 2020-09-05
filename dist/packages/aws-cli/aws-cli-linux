@@ -23,6 +23,14 @@ unzip -q awscliv2.zip
 # Install
 sudo ./aws/install
 
+cat <<'EOF'
+
+>> For help setting up AWS Cli visit:
+https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
+EOF
+
+grep --quiet 'complete -C aws_completer aws' ~/.bashrc && exit 0
+
 cat <<'EOF' >> ~/.bashrc
 
 # AWS-CLI
@@ -31,8 +39,4 @@ complete -C aws_completer aws
 # :AWS-CLI
 EOF
 
-cat <<'EOF'
 
->> For help setting up AWS Cli visit:
-https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html
-EOF
