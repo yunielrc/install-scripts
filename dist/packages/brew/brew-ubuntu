@@ -21,14 +21,14 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 brew install gcc
 
 # install for all users, except root
-cat <<'EOF' | sudo tee -a ~/.bashrc
+cat <<'EOF' >> ~/.bash_profile
 
 # BREW
 if [[ "$USER" != root ]]; then
   [[ -d /home/linuxbrew/.linuxbrew ]] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
   ## completion
-  if type brew &>/dev/null; then
+  if type brew &>/dev/null && [[ $- == *i* ]]; then
     HOMEBREW_PREFIX="$(brew --prefix)"
     if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
       source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
