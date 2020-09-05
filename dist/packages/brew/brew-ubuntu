@@ -32,6 +32,8 @@ else
   BASH_PROFILE=~/.bash_login
 fi
 
+grep --quiet '/home/linuxbrew/.linuxbrew/bin/brew shellenv' "$BASH_PROFILE" && exit 0
+
 cat <<'EOF' >> "$BASH_PROFILE"
 
 # BREW
