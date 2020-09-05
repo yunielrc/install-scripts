@@ -21,7 +21,18 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 brew install gcc
 
 # install for all users, except root
-cat <<'EOF' >> ~/.bash_profile
+
+BASH_PROFILE=''
+
+if [[ -f ~/.profile ]]; then
+  BASH_PROFILE=~/.profile
+elif [[ -f ~/.bash_profile ]]; then
+  BASH_PROFILE=~/.bash_profile
+else
+  BASH_PROFILE=~/.bash_login
+fi
+
+cat <<'EOF' >> "$BASH_PROFILE"
 
 # BREW
 if [[ "$USER" != root ]]; then
