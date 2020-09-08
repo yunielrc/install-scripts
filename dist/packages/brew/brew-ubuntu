@@ -24,27 +24,34 @@ brew install gcc
 
 BASH_PROFILE=~/.bash_profile
 [[ ! -f ~/.bash_profile ]] && BASH_PROFILE=~/.profile
-
-[[ -f "$BASH_PROFILE" ]] && grep --quiet '/home/linuxbrew/.linuxbrew/bin/brew shellenv' "$BASH_PROFILE" && exit 0
-
-cat <<'EOF' >> "$BASH_PROFILE"
-
-# BREW
-if [[ "$USER" != root ]]; then
-  [[ -d /home/linuxbrew/.linuxbrew ]] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
-  ## completion
-  if type brew &>/dev/null && [[ $- == *i* ]]; then
-    HOMEBREW_PREFIX="$(brew --prefix)"
-    if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-      source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-    else
-      for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-        [[ -r "$COMPLETION" ]] && source "$COMPLETION"
-      done
-    fi
-  fi
-  ## :completion
+if [[ -f "$BASH_PROFILE" ]]; then
+  grep --quiet '/home/linuxbrew/.linuxbrew/bin/brew shellenv' "$BASH_PROFILE" && exit 0
+else
+  touch "$BASH_PROFILE"
 fi
-## :BREW
+
+{
+  cat <<-'EOF'
+
+  # BREW
+  if [[ "$USER" != root ]]; then
+    [[ -d /home/linuxbrew/.linuxbrew ]] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+    ## completion
+    if type brew &>/dev/null && [[ $- == *i* ]]; then
+      HOMEBREW_PREFIX="$(brew --prefix)"
+      if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+        source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+      else
+        for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+          [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+        done
+      fi
+    fi
+    ## :completion
+  fi
+  ## :BREW
 EOF
+
+  cat "$BASH_PROFILE"
+} > "${BASH_PROFILE}.copy" && mv "${BASH_PROFILE}.copy" "${BASH_PROFILE}"
