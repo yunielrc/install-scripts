@@ -19,6 +19,7 @@ curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install.sh
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 brew install gcc
+brew install bash-completion
 
 # install for all users, except root
 
@@ -33,25 +34,27 @@ fi
 {
   cat <<-'EOF'
 
-  # BREW
-  if [[ "$USER" != root ]]; then
-    [[ -d /home/linuxbrew/.linuxbrew ]] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
-    ## completion
-    if type brew &>/dev/null && [[ $- == *i* ]]; then
-      HOMEBREW_PREFIX="$(brew --prefix)"
-      if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-        source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-      else
-        for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-          [[ -r "$COMPLETION" ]] && source "$COMPLETION"
-        done
-      fi
-    fi
-    ## :completion
-  fi
-  ## :BREW
+# BREW
+if [[ "$USER" != root ]]; then
+  [[ -d /home/linuxbrew/.linuxbrew ]] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+## :BREW
 EOF
-
   cat "$BASH_PROFILE"
 } > "${BASH_PROFILE}.copy" && mv "${BASH_PROFILE}.copy" "${BASH_PROFILE}"
+
+cat <<-'EOF' >> ~/.bashrc
+
+## BREW COMPLETION
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+    done
+  fi
+fi
+## :BREW COMPLETION
+EOF
