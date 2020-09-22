@@ -19,7 +19,6 @@ curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install.sh
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 brew install gcc
-brew install bash-completion
 
 # install for all users, except root
 
