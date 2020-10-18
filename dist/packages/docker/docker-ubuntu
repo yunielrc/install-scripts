@@ -2,11 +2,7 @@
 
 set -euEo pipefail
 
-# Idempotent
-type -P docker &> /dev/null && {
-  echo 'docker currently installed'
-  exit 0
-}
+sudo apt-get remove -y docker docker-engine docker.io containerd runc
 
 # Dependencies
 sudo apt-get update -y
