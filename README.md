@@ -10,79 +10,79 @@ Install apps in easy way from the command line
 - **4kvideodownloader** (GUI)
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/4kvideodownloader/4kvideodownloader-ubuntu | bash
+wget -qO - https://git.io/JTlFT?=4kvideodownloader-ubuntu | bash
 ```
 
 - **aws-cli**
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/aws-cli/aws-cli-linux | bash
+wget -qO - https://git.io/JTlb6?=aws-cli-linux | bash
 ```
 
 - **brew**
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/brew/brew-ubuntu | bash
+wget -qO - https://git.io/JTlbH?=brew-ubuntu | bash
 ```
 
 - **docker**
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/docker/docker-ubuntu | bash
+wget -qO - https://git.io/JJaKZ?=docker-ubuntu | bash
 ```
 
 - **electrum** (GUI)
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/electrum/electrum-linux | bash
+wget -qO - https://git.io/JTlNe?=electrum-linux | bash
 ```
 
 - **google-chrome** (GUI)
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/google-chrome/google-chrome-ubuntu | bash
+wget -qO - https://git.io/JTlNm?=google-chrome-ubuntu | bash
 ```
 
 - **popcorn-time** (GUI)
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/popcorn-time/popcorn-time-ubuntu | bash
+wget -qO - https://git.io/JTlNs?=popcorn-time-ubuntu | bash
 ```
 
 - **postman** (GUI)
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/postman/postman-linux | bash
+wget -qO - https://git.io/JTlNZ?=postman-linux | bash
 ```
 
 - **staruml** (GUI)
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/staruml/staruml-linux | bash
+wget -qO - https://git.io/JTlNn?=staruml-linux | bash
 ```
 
 - **stremio** (GUI)
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/stremio/stremio-ubuntu | bash
+wget -qO - https://git.io/JTlNl?=stremio-ubuntu | bash
 ```
 
 - **telegram** (GUI)
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/telegram/telegram-linux | bash
+wget -qO - https://git.io/JTlNB?=telegram-linux | bash
 ```
 
 - **vagrant**
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/vagrant/vagrant-ubuntu | bash
+wget -qO - https://git.io/JTlNR?=vagrant-ubuntu | bash
 ```
 
 - **vscode** (GUI)
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/vscode/vscode-ubuntu | bash
+wget -qO - https://git.io/JTlNu?=vscode-ubuntu | bash
 ```
 
 ## If you want to test
