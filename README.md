@@ -12,79 +12,66 @@ Install apps in easy way from the command line
 ```sh
 wget -qO - https://git.io/JTlFT?=4kvideodownloader-ubuntu | bash
 ```
-
 - **aws-cli**
 
 ```sh
 wget -qO - https://git.io/JTlb6?=aws-cli-linux | bash
 ```
-
 - **brew**
 
 ```sh
 wget -qO - https://git.io/JTlbH?=brew-ubuntu | bash
 ```
-
 - **docker**
 
 ```sh
 wget -qO - https://git.io/JJaKZ?=docker-ubuntu | bash
 ```
-
 - **electrum** (GUI)
 
 ```sh
 wget -qO - https://git.io/JTlNe?=electrum-linux | bash
 ```
-
 - **google-chrome** (GUI)
 
 ```sh
 wget -qO - https://git.io/JTlNm?=google-chrome-ubuntu | bash
 ```
-
 - **popcorn-time** (GUI)
 
 ```sh
 wget -qO - https://git.io/JTlNs?=popcorn-time-ubuntu | bash
 ```
-
 - **postman** (GUI)
 
 ```sh
 wget -qO - https://git.io/JTlNZ?=postman-linux | bash
 ```
-
 - **staruml** (GUI)
 
 ```sh
 wget -qO - https://git.io/JTlNn?=staruml-linux | bash
 ```
-
 - **stremio** (GUI)
 
 ```sh
 wget -qO - https://git.io/JTlNl?=stremio-ubuntu | bash
 ```
-
 - **telegram** (GUI)
 
 ```sh
 wget -qO - https://git.io/JTlNB?=telegram-linux | bash
 ```
-
 - **vagrant**
 
 ```sh
 wget -qO - https://git.io/JTlNR?=vagrant-ubuntu | bash
 ```
-
 - **vscode** (GUI)
 
 ```sh
 wget -qO - https://git.io/JTlNu?=vscode-ubuntu | bash
 ```
-
 ## If you want to test
 
 OS: ubuntu 20.04
