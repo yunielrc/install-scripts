@@ -2,7 +2,7 @@
 # shellcheck disable=SC2154
 set -euEo pipefail
 
-readonly BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+readonly BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly WORK_DIR="${BASE_DIR}/.."
 cd "$WORK_DIR"
 
@@ -11,7 +11,7 @@ set -o allexport
 set +o allexport
 
 {
-cat <<'EOF'
+  cat <<'EOF'
 <!-- DON'T EDIT HERE, THIS IS GENERATED ON COMMIT -->
 <!-- EDIT: $ vim ./scripts/gen-readme -->
 
@@ -22,32 +22,34 @@ Install apps in easy way from the command line
 ## Usage
 
 EOF
-(
-  cd ./dist/packages
+  (
+    cd ./dist/packages
 
-  for pkg in *; do
+    for pkg in *; do
 
-    if [[ -f "./${pkg}/.gui" ]]; then
-      echo -e "- **${pkg}** (GUI)\n"
-    else
-      echo -e "- **${pkg}**\n"
-    fi
+      if [[ -f "./${pkg}/.gui" ]]; then
+        echo -e "- **${pkg}** (GUI)\n"
+      else
+        echo -e "- **${pkg}**\n"
+      fi
 
-    (
-      cd "./${pkg}"
+      (
+        cd "./${pkg}"
 
-      for pkg_script in "${pkg}-"*; do
-cat <<EOF
-\`\`\`sh
-wget -qO - ${iscript}/${pkg}/${pkg_script} | bash
-\`\`\`
+        for pkg_script in "${pkg}-"*; do
+          echo '```sh'
 
-EOF
-      done
-    )
-  done
-)
-cat <<'EOF'
+          if [[ -f .url ]]; then
+            echo "wget -qO - $(head -n 1 .url) | bash"
+          else
+            echo "wget -qO - ${iscript}/${pkg}/${pkg_script} | bash"
+          fi
+          echo '```'
+        done
+      )
+    done
+  )
+  cat <<'EOF'
 ## If you want to test
 
 OS: ubuntu 20.04
@@ -117,4 +119,4 @@ $ vagrant destroy -f vnc
 
 EOF
 
-} > README.md
+} >README.md
