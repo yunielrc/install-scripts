@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-sudo apt-get remove -y docker docker-engine docker.io containerd runc || :
-
 set -euEo pipefail
 
 # Idempotent
