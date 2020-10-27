@@ -40,7 +40,7 @@ wget -qO - https://git.io/JTlNm?=google-chrome-ubuntu | bash
 - **opensnitch**
 
 ```sh
-wget -qO -  | bash
+wget -qO - wget -qO - https://git.io/JT6Fo?=opensnitch-ubuntu | bash | bash
 ```
 - **popcorn-time** (GUI)
 
