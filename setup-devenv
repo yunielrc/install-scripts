@@ -14,6 +14,13 @@ set -o allexport
 . ./.env
 set +o allexport
 
+# Install brew
+wget -qO - https://git.io/JTlbH?=brew-ubuntu | bash
+
+brew install pre-commit
+brew install shfmt
+brew install shellcheck
+
 # Add git hooks
 (
   cd .git/hooks

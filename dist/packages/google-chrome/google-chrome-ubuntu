@@ -17,4 +17,3 @@ sudo -s <<EOF
 apt-get update -y
 apt-get install -y google-chrome-stable chrome-gnome-shell
 EOF
-

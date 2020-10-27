@@ -3,33 +3,33 @@
 readonly SCRIPT="$(basename "$0")"
 
 case "$1" in
-  build-test)
-    shift
-    docker-compose build
-    docker-compose run --rm test "$@"
+build-test)
+  shift
+  docker-compose build
+  docker-compose run --rm test "$@"
   ;;
-  test)
-    shift
-    docker-compose run --rm test "$@"
+test)
+  shift
+  docker-compose run --rm test "$@"
   ;;
-  build-play)
-    shift
-    docker-compose build
-    docker-compose run --rm play "$@"
+build-play)
+  shift
+  docker-compose build
+  docker-compose run --rm play "$@"
   ;;
-  play)
-    shift
-    docker-compose run --rm play "$@"
+play)
+  shift
+  docker-compose run --rm play "$@"
   ;;
-  gui)
-    shift
-    docker-compose up gui
+gui)
+  shift
+  docker-compose up gui
   ;;
-  host)
-    echo "hostname: $(hostname)"
+host)
+  echo "hostname: $(hostname)"
   ;;
-  *)
-    cat <<-EOF
+*)
+  cat <<-EOF
     $SCRIPT test
     $SCRIPT test ./dist/packages/docker/test/setup.bats
     $SCRIPT play

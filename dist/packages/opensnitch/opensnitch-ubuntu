@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -euEo pipefail
+
+# Idempotent
+type -P opensnitch-ui opensnitchd &>/dev/null && {
+  echo "opensnitch it's currently installed"
+  exit 0
+}
+
+# Download
+cd "$(mktemp -d)"
+wget -qO - https://api.github.com/repos/gustavo-iniguez-goya/opensnitch/releases/latest |
+  grep -Pom 1 'https://.+opensnitch.+amd64.deb' |
+  wget -q -i -
+
+wget -qO - https://api.github.com/repos/gustavo-iniguez-goya/opensnitch/releases/latest |
+  grep -Pom 1 'https://.+python3-opensnitch-ui.+all.deb' |
+  wget -q -i -
+
+# Install
+sudo apt-get update -y
+sudo apt-get install -y \
+  ./opensnitch*amd64.deb \
+  ./python3-opensnitch-ui*all.deb \
+  python3-grpcio \
+  python3-protobuf \
+  python3-slugify

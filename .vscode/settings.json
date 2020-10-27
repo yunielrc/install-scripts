@@ -1,7 +1,10 @@
 {
-  "shellcheck.exclude": [1091, 1090, 2155],
-  "shellcheck.ignoreFileSchemes": ["git", "gitfs"],
+  "shellcheck.exclude": ["1091", "1090", "2155"],
   "files.exclude": {
     ".vagrant": true
+  },
+  "files.associations": {
+    ".env*": "shellscript",
+    "htoprc": "ini"
   }
 }

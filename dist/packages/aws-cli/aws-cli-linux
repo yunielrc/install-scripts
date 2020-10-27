@@ -38,5 +38,3 @@ cat <<'EOF' >> ~/.bashrc
 complete -C aws_completer aws
 # :AWS-CLI
 EOF
-
-

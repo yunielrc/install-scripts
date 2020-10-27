@@ -138,4 +138,3 @@ $ vncviewer DIG_OUTPUT_HERE:5901
 # later, when testing is done run:
 $ vagrant destroy -f vnc
 ```
-
