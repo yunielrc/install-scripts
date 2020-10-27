@@ -24,7 +24,7 @@ brew install shellcheck
 # Add git hooks
 (
   cd .git/hooks
-  cp -s ../../scripts/git-hooks/* .
+  cp -sf ../../scripts/git-hooks/* .
 )
 
 sudo apt-get update -y

@@ -37,6 +37,11 @@ wget -qO - https://git.io/JTlNe?=electrum-linux | bash
 ```sh
 wget -qO - https://git.io/JTlNm?=google-chrome-ubuntu | bash
 ```
+- **opensnitch**
+
+```sh
+wget -qO -  | bash
+```
 - **popcorn-time** (GUI)
 
 ```sh
@@ -138,3 +143,4 @@ $ vncviewer DIG_OUTPUT_HERE:5901
 # later, when testing is done run:
 $ vagrant destroy -f vnc
 ```
+
