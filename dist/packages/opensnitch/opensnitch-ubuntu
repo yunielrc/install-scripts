@@ -11,11 +11,13 @@ type -P opensnitch-ui opensnitchd &>/dev/null && {
 # Download
 cd "$(mktemp -d)"
 wget -qO - https://api.github.com/repos/gustavo-iniguez-goya/opensnitch/releases/latest |
-  grep -Pom 1 'https://.+opensnitch.+amd64.deb' |
+  grep -Po 'https://.+opensnitch.+amd64.deb' |
+  head -n 1 |
   wget -q -i -
 
 wget -qO - https://api.github.com/repos/gustavo-iniguez-goya/opensnitch/releases/latest |
-  grep -Pom 1 'https://.+python3-opensnitch-ui.+all.deb' |
+  grep -Po 'https://.+python3-opensnitch-ui.+all.deb' |
+  head -n 1 |
   wget -q -i -
 
 # Install
