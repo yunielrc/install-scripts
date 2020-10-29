@@ -16,6 +16,10 @@ on_exit() {
   rm -rf "$tmp_dir"
 }
 trap on_exit INT TERM EXIT
+
+# Dependencies
+sudo apt-get install -y unzip curl
+
 # Download
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip
 unzip -q awscliv2.zip
