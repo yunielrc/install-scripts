@@ -21,9 +21,9 @@ wget -qO - https://api.github.com/repos/gustavo-iniguez-goya/opensnitch/releases
   wget -q -i -
 
 # Install
-sudo apt-get update -y
+sudo apt update -y
 # sudo apt-get install python3-pip -y
 # sudo pip3 install unicode_slugify grpcio-tools protobuf
-sudo apt-get install -y \
+sudo DEBIAN_FRONTEND=noninteractive apt install -y \
   ./opensnitch*amd64.deb \
   ./python3-opensnitch-ui*all.deb
