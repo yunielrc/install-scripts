@@ -42,6 +42,11 @@ wget -qO - https://git.io/JTlNm?=google-chrome-ubuntu | bash
 ```sh
 wget -qO - https://git.io/JT6Fo?=opensnitch-ubuntu | bash
 ```
+- **openvpn**
+
+```sh
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/openvpn/openvpn-* | bash
+```
 - **popcorn-time** (GUI)
 
 ```sh
