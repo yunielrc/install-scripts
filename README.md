@@ -61,13 +61,13 @@ wget -qO - https://git.io/JT6Fo?=opensnitch-ubuntu | bash
 
 > openvpn-shadowsocks-server-linux
 ```sh
-wget -qO - https://git.io/JT9Yb?=openvpn-shadowsocks-server-linux | bash
+wget -qO - https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux | bash
 ```
 
 With custom parameters:
 
 ```sh
-wget -qO -  https://git.io/JT9Yb?=openvpn-shadowsocks-server-linux | \
+wget -qO -  https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux | \
   SS_CLIENT_PORT=<shadowsocks client port> \  # optional
   SS_PORT=<shadowsocks server port here> \    # optional
   SS_PASSWORD=<shadowsocks password here> \   # optional
@@ -76,13 +76,13 @@ wget -qO -  https://git.io/JT9Yb?=openvpn-shadowsocks-server-linux | \
 
 > openvpn-server-linux
 ```sh
-wget -qO - https://git.io/JT9Yd?=openvpn-server-linux | bash
+wget -qO - https://git.io/JT9G2?=openvpn-server-linux | bash
 ```
 
 With custom parameters:
 
 ```sh
-wget -qO -  https://git.io/JT9Yd?=openvpn-server-linux | \
+wget -qO -  https://git.io/JT9G2?=openvpn-server-linux | \
   OPENVPN_HOST=<vpn host here> \          # optional
   OPENVPN_PORT=<vpn port here> \          # optional
   OPENVPN_PROTOCOL=<vpn protocol here> \  # optional
