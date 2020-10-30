@@ -1,24 +1,28 @@
 # shellcheck shell=bash
 set -euEo pipefail
 
-sudo apt-get update -y && sudo apt-get install -y dos2unix
-
 #
 # Configure openvpn server defined in docker-compose.yml
 #
-# Arguments
+# Parameters
 #   openvpn_client_name
 #   openvpn_host
 #   openvpn_port
 #   openvpn_protocol
 #
 configure_openvpn() {
+  # Dependencies
+  type -P dos2unix >/dev/null || {
+    sudo apt-get update -y
+    sudo apt-get install -y dos2unix
+  }
+  # parameters
   local -r openvpn_client_name="$1"
   local -r openvpn_host="$2"
   local -r openvpn_port="$3"
   local -r openvpn_protocol="$4"
   # Initialize the configuration files
-  echo ">> Initializing configuration files"
+  echo -e "\n>> Initializing configuration files"
   docker-compose run --rm openvpn \
     ovpn_genconfig -u "${openvpn_protocol}://${openvpn_host}"
   # Add 'duplicate-cn' option to vpn config
@@ -28,14 +32,14 @@ configure_openvpn() {
   echo ">> DONE. Initializing configuration files"
 
   # Initialize certificates
-  echo ">> Initializing certificates"
+  echo -e "\n>> Initializing certificates"
   echo "$openvpn_host" |
     docker-compose run --rm openvpn \
       ovpn_initpki nopass
   echo ">> DONE. Initializing certificates"
 
   # Generate a client certificate without a passphrase
-  echo ">> Generating a client certificate without a passphrase"
+  echo -e "\n>> Generating a client certificate without a passphrase"
   docker-compose run --rm openvpn \
     easyrsa build-client-full "${openvpn_client_name}" nopass
   echo ">> DONE. Generating a client certificate without a passphrase"
@@ -43,7 +47,7 @@ configure_openvpn() {
   # Client configuration
 
   ## Retrieve the client configuration with embedded certificates
-  echo ">> Retrieving the client configuration with embedded certificates"
+  echo -e "\n>> Retrieving the client configuration with embedded certificates"
   docker-compose run --rm openvpn \
     ovpn_getclient "${openvpn_client_name}" >"${openvpn_client_name}.ovpn"
 
@@ -57,6 +61,6 @@ configure_openvpn() {
 }
 
 if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
-  echo "Doesn't execute this script, include it" >&2
+  echo ">> Doesn't execute this script, include it" >&2
   exit 1
 fi
