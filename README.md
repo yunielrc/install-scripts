@@ -65,12 +65,15 @@ wget -qO - https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux | bash
 ```
 
 With custom parameters:
+_al parameters are optional_
 
 ```sh
 wget -qO -  https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux | \
-  SS_CLIENT_PORT=<shadowsocks client port> \  # optional
-  SS_PORT=<shadowsocks server port here> \    # optional
-  SS_PASSWORD=<shadowsocks password here> \   # optional
+  WORKING_DIR=<work dir> \
+  SS_CLIENT_PORT=<shadowsocks client port> \
+  SS_PORT=<shadowsocks server port here> \
+  SS_PASSWORD=<shadowsocks password here> \
+  OPENVPN_CLIENT_NAME=<vpn client name> \
   bash
 ```
 
@@ -80,12 +83,15 @@ wget -qO - https://git.io/JT9G2?=openvpn-server-linux | bash
 ```
 
 With custom parameters:
+_al parameters are optional_
 
 ```sh
 wget -qO -  https://git.io/JT9G2?=openvpn-server-linux | \
-  OPENVPN_HOST=<vpn host here> \          # optional
-  OPENVPN_PORT=<vpn port here> \          # optional
-  OPENVPN_PROTOCOL=<vpn protocol here> \  # optional
+  WORKING_DIR=<work dir> \
+  OPENVPN_CLIENT_NAME=<vpn client name> \
+  OPENVPN_HOST=<vpn host> \
+  OPENVPN_PORT=<vpn port> \
+  OPENVPN_PROTOCOL=<vpn protocol> \
   bash
 ```
 - **popcorn-time** (GUI)

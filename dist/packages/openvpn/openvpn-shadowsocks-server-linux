@@ -11,10 +11,11 @@ readonly WORKING_DIR="${WORKING_DIR:-"$PWD"}"
 readonly SS_CLIENT_PORT="${SS_CLIENT_PORT:-1080}"
 readonly SS_PORT="${SS_PORT:-443}"
 readonly SS_PASSWORD="${SS_PASSWORD:-"$(openssl rand -base64 24)"}"
+# openvpn
+readonly OPENVPN_CLIENT_NAME="${OPENVPN_CLIENT_NAME:-"client-$(openssl rand -hex 5)"}"
 
 # Global Variables
 readonly PUBLIC_IP="$(wget -qO - ifconfig.me)"
-readonly OPENVPN_CLIENT_NAME="client-$(openssl rand -hex 5)"
 readonly OPENVPN_HOST='openvpn'
 readonly OPENVPN_PORT=1194
 readonly OPENVPN_PROTOCOL='tcp'

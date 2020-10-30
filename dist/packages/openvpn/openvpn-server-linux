@@ -7,10 +7,10 @@ set -euEo pipefail
 
 # Global Variables
 readonly PUBLIC_IP="$(wget -qO - ifconfig.me)"
-readonly OPENVPN_CLIENT_NAME="client-$(openssl rand -hex 5)"
 
 # Environment parameters
 readonly WORKING_DIR="${WORKING_DIR:-"$PWD"}"
+readonly OPENVPN_CLIENT_NAME="${OPENVPN_CLIENT_NAME:-"client-$(openssl rand -hex 5)"}"
 readonly OPENVPN_HOST="${OPENVPN_HOST:-"$PUBLIC_IP"}"
 readonly OPENVPN_PORT="${OPENVPN_PORT:-1194}"
 readonly OPENVPN_PROTOCOL="${OPENVPN_PROTOCOL:-udp}"
@@ -56,6 +56,8 @@ main() {
   cat <<-EOF
 
 >>Environment parameters:
+  WORKING_DIR=${WORKING_DIR}
+  OPENVPN_CLIENT_NAME=${OPENVPN_CLIENT_NAME}
   OPENVPN_HOST=${OPENVPN_HOST}
   OPENVPN_PORT=${OPENVPN_PORT}
   OPENVPN_PROTOCOL=${OPENVPN_PROTOCOL}
