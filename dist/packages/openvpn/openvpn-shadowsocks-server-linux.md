@@ -26,7 +26,7 @@ services:
     container_name: openvpn
     restart: always
     expose:
-      - "1194"
+      - "1194/tcp"
     volumes:
       - "openvpn_data:/etc/openvpn"
     cap_add:
