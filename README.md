@@ -45,13 +45,10 @@ wget -qO - https://git.io/JT6Fo?=opensnitch-ubuntu | bash
 - **openvpn**
 
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/openvpn/openvpn-server | bash
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/openvpn/openvpn-server-linux | bash
 ```
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/openvpn/openvpn-setup-lib.bash | bash
-```
-```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/openvpn/openvpn-shadowsocks-server | bash
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/openvpn/openvpn-shadowsocks-server-linux | bash
 ```
 - **popcorn-time** (GUI)
 
