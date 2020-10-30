@@ -6,11 +6,31 @@ With custom parameters:
 _al parameters are optional_
 
 ```sh
-wget -qO -  https://git.io/JT9G2?=openvpn-server-linux | \
-  WORKING_DIR=<work dir> \
-  OPENVPN_CLIENT_NAME=<vpn client name> \
-  OPENVPN_HOST=<vpn host> \
-  OPENVPN_PORT=<vpn port> \
-  OPENVPN_PROTOCOL=<vpn protocol> \
+wget -qO -  https://git.io/JT9G2?=openvpn-server-linux |
+  WORKING_DIR=<work dir> \                 # current directory              [default]
+  OPENVPN_CLIENT_NAME=<vpn client name> \  # client-$(openssl rand -hex 5)  [default]
+  OPENVPN_HOST=<vpn host> \                # server public ip               [default]
+  OPENVPN_PORT=<vpn port> \                # 1194                           [default]
+  OPENVPN_PROTOCOL=<vpn protocol> \        # udp                            [default]
   bash
+```
+
+docker-compose.yml template
+
+```yml
+version: "3.3"
+services:
+  openvpn:
+    image: "kylemanna/openvpn:2.4"
+    container_name: openvpn
+    restart: always
+    ports:
+      - "${openvpn_port}:1194/${openvpn_protocol}"
+    volumes:
+      - "openvpn_data:/etc/openvpn"
+    cap_add:
+      - NET_ADMIN
+
+volumes:
+  openvpn_data:
 ```
