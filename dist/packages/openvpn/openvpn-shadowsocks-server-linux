@@ -53,7 +53,8 @@ services:
       - "SS_PLUGIN=v2ray-plugin"
       - "SS_PLUGIN_OPTS=server"
     ports:
-      - "${ss_port}:8388"
+      - "${ss_port}:8388/tcp"
+      - "${ss_port}:8388/udp"
 
 volumes:
   openvpn_data:
