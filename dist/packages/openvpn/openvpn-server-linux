@@ -3,7 +3,7 @@
 set -euEo pipefail
 
 # Include
-. <(wget -qO - 'https://git.io/JT9kF?=openvpn-setup-lib.bash')
+. <(wget -qO - 'https://git.io/JT9Yw?=openvpn.bash')
 
 # Global Variables
 readonly PUBLIC_IP="$(wget -qO - ifconfig.me)"

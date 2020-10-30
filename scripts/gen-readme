@@ -36,11 +36,16 @@ EOF
       (
         cd "./${pkg}"
 
-        for pkg_script in "${pkg}-"*; do
-          echo '```sh'
+        for pkg_script in $(find . -type f -exec file {} \; | grep 'Bourne-Again' | cut -d':' -f 1 | sed 's/^\.\///'); do
+          echo -e "\n> ${pkg_script}"
+          if [[ -f "${pkg_script}.md" ]]; then
+            cat "${pkg_script}.md"
+            continue
+          fi
 
+          echo '```sh'
           if [[ -f .url ]]; then
-            echo "wget -qO - $(head -n 1 .url) | bash"
+            echo "wget -qO - $(grep -Po "https?://.+${pkg_script}" .url | head -n 1) | bash"
           else
             echo "wget -qO - ${iscript}/${pkg}/${pkg_script} | bash"
           fi

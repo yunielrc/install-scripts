@@ -9,79 +9,131 @@ Install apps in easy way from the command line
 
 - **4kvideodownloader** (GUI)
 
+
+> 4kvideodownloader-ubuntu
 ```sh
 wget -qO - https://git.io/JTlFT?=4kvideodownloader-ubuntu | bash
 ```
 - **aws-cli**
 
+
+> aws-cli-linux
 ```sh
 wget -qO - https://git.io/JTlb6?=aws-cli-linux | bash
 ```
 - **brew**
 
+
+> brew-ubuntu
 ```sh
 wget -qO - https://git.io/JTlbH?=brew-ubuntu | bash
 ```
 - **docker**
 
+
+> docker-ubuntu
 ```sh
 wget -qO - https://git.io/JJaKZ?=docker-ubuntu | bash
 ```
 - **electrum** (GUI)
 
+
+> electrum-linux
 ```sh
 wget -qO - https://git.io/JTlNe?=electrum-linux | bash
 ```
 - **google-chrome** (GUI)
 
+
+> google-chrome-ubuntu
 ```sh
 wget -qO - https://git.io/JTlNm?=google-chrome-ubuntu | bash
 ```
 - **opensnitch**
 
+
+> opensnitch-ubuntu
 ```sh
 wget -qO - https://git.io/JT6Fo?=opensnitch-ubuntu | bash
 ```
 - **openvpn**
 
+
+> openvpn-shadowsocks-server-linux
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/openvpn/openvpn-server-linux | bash
+wget -qO - https://git.io/JT9Yb?=openvpn-shadowsocks-server-linux | bash
 ```
+
+With custom parameters:
+
 ```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/openvpn/openvpn-shadowsocks-server-linux | bash
+wget -qO -  https://git.io/JT9Yb?=openvpn-shadowsocks-server-linux | \
+  SS_CLIENT_PORT=<shadowsocks client port> \  # optional
+  SS_PORT=<shadowsocks server port here> \    # optional
+  SS_PASSWORD=<shadowsocks password here> \   # optional
+  bash
+```
+
+> openvpn-server-linux
+```sh
+wget -qO - https://git.io/JT9Yd?=openvpn-server-linux | bash
+```
+
+With custom parameters:
+
+```sh
+wget -qO -  https://git.io/JT9Yd?=openvpn-server-linux | \
+  OPENVPN_HOST=<vpn host here> \          # optional
+  OPENVPN_PORT=<vpn port here> \          # optional
+  OPENVPN_PROTOCOL=<vpn protocol here> \  # optional
+  bash
 ```
 - **popcorn-time** (GUI)
 
+
+> popcorn-time-ubuntu
 ```sh
 wget -qO - https://git.io/JTlNs?=popcorn-time-ubuntu | bash
 ```
 - **postman** (GUI)
 
+
+> postman-linux
 ```sh
 wget -qO - https://git.io/JTlNZ?=postman-linux | bash
 ```
 - **staruml** (GUI)
 
+
+> staruml-linux
 ```sh
 wget -qO - https://git.io/JTlNn?=staruml-linux | bash
 ```
 - **stremio** (GUI)
 
+
+> stremio-ubuntu
 ```sh
 wget -qO - https://git.io/JTlNl?=stremio-ubuntu | bash
 ```
 - **telegram** (GUI)
 
+
+> telegram-linux
 ```sh
 wget -qO - https://git.io/JTlNB?=telegram-linux | bash
 ```
 - **vagrant**
 
+
+> vagrant-ubuntu
 ```sh
 wget -qO - https://git.io/JTlNR?=vagrant-ubuntu | bash
 ```
 - **vscode** (GUI)
 
+
+> vscode-ubuntu
 ```sh
 wget -qO - https://git.io/JTlNu?=vscode-ubuntu | bash
 ```
