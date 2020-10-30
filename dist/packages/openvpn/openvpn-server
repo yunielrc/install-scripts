@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+
+set -euEo pipefail
+
+# Include
+. <(wget -qO - 'https://git.io/JT9kF?=openvpn-setup-lib.bash')
+
+# Global Variables
+readonly PUBLIC_IP="$(wget -qO - ifconfig.me)"
+readonly OPENVPN_CLIENT_NAME="client-$(openssl rand -hex 5)"
+
+# Environment parameters
+readonly WORKING_DIR="${WORKING_DIR:-"$PWD"}"
+readonly OPENVPN_HOST="${OPENVPN_HOST:-"$PUBLIC_IP"}"
+readonly OPENVPN_PORT="${OPENVPN_PORT:-1194}"
+readonly OPENVPN_PROTOCOL="${OPENVPN_PROTOCOL:-udp}"
+
+cd "$WORKING_DIR"
+
+make_compose_file() {
+  local -r openvpn_port="$1"
+  local -r openvpn_protocol="$2"
+
+  if [[ ! -f docker-compose.yml ]]; then
+    echo -e "\n>> Creating docker-compose.yml in current directory"
+
+    cat <<-EOF >docker-compose.yml
+  version: "3.3"
+  services:
+    openvpn:
+      image: "kylemanna/openvpn:2.4"
+      container_name: openvpn
+      restart: always
+      ports:
+        - "${openvpn_port}:1194/${openvpn_protocol}"
+      volumes:
+        - "openvpn_data:/etc/openvpn"
+      cap_add:
+        - NET_ADMIN
+
+  volumes:
+    openvpn_data:
+EOF
+    echo ">> DONE. Creating docker-compose.yml in current directory"
+  else
+    cat <<-EOF
+
+>> Using user defined docker-compose.yml in current directory
+>>> [ATENTION] values defined in docker-compose.yml must match with
+   those in environment paramenters
+EOF
+  fi
+}
+
+main() {
+  cat <<-EOF
+
+>>Environment parameters:
+  OPENVPN_HOST=${OPENVPN_HOST}
+  OPENVPN_PORT=${OPENVPN_PORT}
+  OPENVPN_PROTOCOL=${OPENVPN_PROTOCOL}
+EOF
+
+  echo -e "\n>> Working directory: $(pwd)"
+
+  make_compose_file \
+    "$OPENVPN_PORT" \
+    "$OPENVPN_PROTOCOL"
+
+  configure_openvpn \
+    "$OPENVPN_CLIENT_NAME" \
+    "$OPENVPN_HOST" \
+    "$OPENVPN_PORT" \
+    "$OPENVPN_PROTOCOL"
+
+  # Start openvpn server
+  echo -e "\n>> Starting openvpn server"
+  docker-compose up -d
+
+  cat <<-EOF
+
+>> Copy ${OPENVPN_CLIENT_NAME}.ovpn file to client machine and run the comand below:
+$ sudo openvpn --config ${OPENVPN_CLIENT_NAME}.ovpn
+EOF
+}
+
+if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
+  main "$@"
+  exit $?
+else
+  echo "Doesn't include this script, execute it" >&2
+  exit 1
+fi

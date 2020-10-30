@@ -1,0 +1,126 @@
+#!/usr/bin/env bash
+
+set -euEo pipefail
+
+# Include
+. <(wget -qO - 'https://git.io/JT9kF?=openvpn-setup-lib.bash')
+
+# Environment parameters
+## shadowsocks server
+readonly WORKING_DIR="${WORKING_DIR:-"$PWD"}"
+readonly SS_CLIENT_PORT="${SS_CLIENT_PORT:-1080}"
+readonly SS_PORT="${SS_PORT:-443}"
+readonly SS_PASSWORD="${SS_PASSWORD:-"$(openssl rand -base64 24)"}"
+
+# Global Variables
+readonly PUBLIC_IP="$(wget -qO - ifconfig.me)"
+readonly OPENVPN_CLIENT_NAME="client-$(openssl rand -hex 5)"
+readonly OPENVPN_HOST='openvpn'
+readonly OPENVPN_PORT=1194
+readonly OPENVPN_PROTOCOL='tcp'
+
+cd "$WORKING_DIR"
+
+make_compose_file() {
+  local ss_port="$1"
+  local ss_password="$2"
+
+  if [[ ! -f docker-compose.yml ]]; then
+    echo -e "\n>> Creating docker-compose.yml in current directory"
+
+    cat <<-EOF >docker-compose.yml
+version: "3.3"
+
+services:
+  openvpn:
+    image: "kylemanna/openvpn:2.4"
+    container_name: openvpn
+    restart: always
+    expose:
+      - "1194"
+    volumes:
+      - "openvpn_data:/etc/openvpn"
+    cap_add:
+      - NET_ADMIN
+
+  ssserver:
+    image: yunielrc/shadowsocks-rust-server
+    restart: always
+    container_name: ssserver
+    environment:
+      - "SS_PASSWORD=${ss_password}"
+      - "SS_PLUGIN=v2ray-plugin"
+      - "SS_PLUGIN_OPTS=server"
+    ports:
+      - "${ss_port}:8388"
+
+volumes:
+  openvpn_data:
+EOF
+    echo ">> DONE. Creating docker-compose.yml in current directory"
+  else
+    cat <<-EOF
+
+>> Using user defined docker-compose.yml in current directory
+>>> [ATENTION] values defined in docker-compose.yml must match with
+   those in environment paramenters
+EOF
+  fi
+}
+
+main() {
+  cat <<-EOF
+
+>>Environment parameters:
+  ## shadowsocks server
+  SS_CLIENT_PORT=${SS_CLIENT_PORT}
+  SS_PORT=${SS_PORT}
+  SS_PASSWORD=${SS_PASSWORD}
+EOF
+
+  echo -e "\n>> Working directory: $(pwd)"
+
+  make_compose_file \
+    "$SS_PORT" \
+    "$SS_PASSWORD"
+
+  configure_openvpn \
+    "$OPENVPN_CLIENT_NAME" \
+    "$OPENVPN_HOST" \
+    "$OPENVPN_PORT" \
+    "$OPENVPN_PROTOCOL"
+
+  # Add shadowsocks proxy support on vpn client profile
+  cat <<-EOF >>"${OPENVPN_CLIENT_NAME}.ovpn"
+proto tcp
+socks-proxy 127.0.0.1 ${SS_CLIENT_PORT}
+
+route ${PUBLIC_IP}   255.255.255.255  net_gateway
+EOF
+
+  # Start openvpn server
+  echo -e "\n>> Starting openvpn & shadowsocks server"
+  docker-compose up -d
+
+  cat <<-EOF
+
+>> Configure your shadowsocks client with:
+  SS_SERVER_IP=${PUBLIC_IP}
+  SS_SERVER_PORT=${SS_PORT}
+  SS_PASSWORD=${SS_PASSWORD}
+  SS_LOCAL_PORT=${SS_CLIENT_PORT}
+
+>> Copy ${OPENVPN_CLIENT_NAME}.ovpn file to client machine, and with shadowsocks
+   client running run the comand below:
+
+$ sudo openvpn --config ${OPENVPN_CLIENT_NAME}.ovpn
+EOF
+}
+
+if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
+  main "$@"
+  exit $?
+else
+  echo ">> Doesn't include this script, execute it" >&2
+  exit 1
+fi
