@@ -12,7 +12,7 @@ readonly SS_CLIENT_PORT="${SS_CLIENT_PORT:-1080}"
 readonly SS_PORT="${SS_PORT:-443}"
 readonly SS_PASSWORD="${SS_PASSWORD:-"$(openssl rand -base64 32)"}"
 # openvpn
-readonly OPENVPN_CLIENT_NAME="${OPENVPN_CLIENT_NAME:-"client-$(openssl rand -hex 5)"}"
+readonly OPENVPN_CLIENT_NAME="${OPENVPN_CLIENT_NAME:-"profile-${PUBLIC_IP}"}"
 
 # Global Variables
 readonly PUBLIC_IP="$(wget -qO - ifconfig.me)"
