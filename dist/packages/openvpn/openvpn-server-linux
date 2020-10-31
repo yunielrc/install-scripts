@@ -87,10 +87,10 @@ $ sudo openvpn --config ${OPENVPN_CLIENT_NAME}.ovpn
 EOF
 }
 
-if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
-  main "$@"
-  exit $?
-else
-  echo "Doesn't include this script, execute it" >&2
-  exit 1
-fi
+# if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
+#   main "$@"
+#   exit $?
+# else
+#   echo "Doesn't include this script, execute it" >&2
+#   exit 1
+# fi

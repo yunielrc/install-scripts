@@ -60,7 +60,7 @@ configure_openvpn() {
 
 }
 
-if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
-  echo ">> Doesn't execute this script, include it" >&2
-  exit 1
-fi
+# if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
+#   echo ">> Doesn't execute this script, include it" >&2
+#   exit 1
+# fi
