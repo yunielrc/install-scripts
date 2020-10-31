@@ -15,6 +15,7 @@ readonly OPENVPN_HOST="${OPENVPN_HOST:-"$PUBLIC_IP"}"
 readonly OPENVPN_PORT="${OPENVPN_PORT:-1194}"
 readonly OPENVPN_PROTOCOL="${OPENVPN_PROTOCOL:-udp}"
 
+[[ ! -f "$WORKING_DIR" ]] && mkdir -p "$WORKING_DIR"
 cd "$WORKING_DIR"
 
 make_compose_file() {
