@@ -87,6 +87,7 @@ $ sudo openvpn --config ${OPENVPN_CLIENT_NAME}.ovpn
 EOF
 }
 
+main "$@"
 # if [[ "${BASH_SOURCE[0]}" = "${0}" ]]; then
 #   main "$@"
 #   exit $?
