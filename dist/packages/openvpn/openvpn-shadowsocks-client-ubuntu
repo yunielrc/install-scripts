@@ -1,0 +1,145 @@
+#!/usr/bin/env bash
+
+set -euEo pipefail
+
+#
+# Steeps
+# - install shadowsocks client
+# - install openvpn
+# - install openvpn+shadowsocks profile on /etc/openvpn/client
+# - install vpn-toggle-script
+# - install keyboard shortcut for vpn toggle [optional]
+
+# Include
+. <(wget -qO - 'https://git.io/JT9Yw?=openvpn.bash')
+. <(wget -qO - 'https://git.io/JT5fS?=bl.bash')
+
+# Environment parameters
+## shadowsocks client
+readonly WORKING_DIR="${WORKING_DIR:-"$PWD"}"
+readonly SS_SERVER_IP="$SS_SERVER_IP"
+readonly SS_SERVER_PORT="$SS_SERVER_PORT"
+readonly SS_PASSWORD="$SS_PASSWORD"
+readonly SS_PORT="$SS_PORT"
+# openvpn
+readonly OPENVPN_PROFILE_FILE="$OPENVPN_PROFILE_FILE"
+readonly TOGGLE_VPN_KEYBIND="${TOGGLE_VPN_KEYBIND:-'<Ctrl><Shift>F8'}"
+
+# Install
+
+# ssclient
+setup_ssclient() {
+  local ss_server_ip="$1"
+  local ss_server_port="$2"
+  local ss_server_password="$3"
+  local ss_port="$4"
+
+  # make ssclient compose file
+  if [[ ! -f docker-compose.yml ]]; then
+    echo -e "\n>> Creating docker-compose.yml in current directory"
+
+    cat <<-EOF >docker-compose.yml
+version: "3.4"
+
+services:
+  ssclient:
+    image: yunielrc/shadowsocks-rust-client
+    restart: always
+    container_name: ssclient
+    environment:
+      - "SS_SERVER_IP=${ss_server_ip}"
+      - "SS_SERVER_PORT=${ss_server_port}"
+      - "SS_PASSWORD=${ss_server_password}"
+      - "SS_PLUGIN=v2ray-plugin"
+    ports:
+      - "${ss_port}:1080"
+EOF
+    echo ">> DONE. Creating docker-compose.yml in current directory"
+  else
+    cat <<-EOF
+
+>> Using user defined docker-compose.yml in current directory
+>>> [ATENTION] values defined in docker-compose.yml must match with
+   those in environment paramenters
+EOF
+  fi
+
+  echo -e "\n>> Starting shadowsocks client service on port ${ss_port}"
+  docker-compose up -d
+}
+
+setup_openvpn_client() {
+  local openvpn_profile_file="$1"
+  local toggle_vpn_keybind="$2"
+
+  local openvpn_profile_name="ovpn-ssclient"
+
+  sudo apt-get update -qy
+  sudo apt-get install -y openvpn
+
+  echo -e "\n>>Installing openvpn profile"
+  sudo cp -fv "$openvpn_profile_file" "/etc/openvpn/client/${openvpn_profile_name}.conf"
+
+  echo -e "\n>> Installing vpn-toggle script"
+  sudo wget 'https://git.io/JT5ee?=vpn-toggle' -O /usr/bin/vpn-toggle
+  sudo chmod +x /usr/bin/vpn-toggle
+
+  # allow user run systemctl without password
+  # https://www.digitalocean.com/community/tutorials/how-to-edit-the-sudoers-file-on-ubuntu-and-centos
+  echo "${USER} ALL=NOPASSWD:$(type -P systemctl)" |
+    sudo tee "/etc/sudoers.d/${USER}-nopasswd-systemctl"
+
+  # add keyboard shortcuts if running environment it's ubuntu gnome desktop
+  if [[ "${XDG_CURRENT_DESKTOP:-}" =~ (GNOME|gnome) ]]; then
+    echo -e "\n>> Adding vpn-toggle keyboard shortcut: ${toggle_vpn_keybind}"
+    bl::gnome_add_custom_keybinding 'VPN Toggle' \
+      "sh -c 'vpn-toggle'" \
+      "$toggle_vpn_keybind"
+  fi
+}
+
+main() {
+  [[ ! -d "$WORKING_DIR" ]] && mkdir -p "$WORKING_DIR"
+  cd "$WORKING_DIR"
+
+  cat <<-EOF
+
+>>Environment parameters:
+## shadowsocks client
+WORKING_DIR=${WORKING_DIR}
+SS_SERVER_IP=${SS_SERVER_IP}
+SS_SERVER_PORT=${SS_SERVER_PORT}
+SS_PASSWORD=${SS_PASSWORD}
+SS_PORT=${SS_PORT}
+# openvpn
+OPENVPN_PROFILE_FILE=${OPENVPN_PROFILE_FILE}
+TOGGLE_VPN_KEYBIND=${TOGGLE_VPN_KEYBIND}
+EOF
+
+  echo -e "\n>> Working directory: $(pwd)"
+
+  # setup shadowsocks client
+  setup_ssclient \
+    "$SS_SERVER_IP" \
+    "$SS_SERVER_PORT" \
+    "$SS_PASSWORD" \
+    "$SS_PORT"
+
+  # setup openvpn client
+  setup_openvpn_client \
+    "$OPENVPN_PROFILE_FILE" \
+    "$TOGGLE_VPN_KEYBIND"
+
+  # OUTPUT
+  cat <<-EOF
+>> INSTALLATION FINISHED
+
+>> openvpn with shadowsocks client installed
+
+>> Press ${TOGGLE_VPN_KEYBIND}, or run command below for connect/disconnect the vpn:
+
+$ vpn-toggle
+EOF
+}
+
+main "$@"
