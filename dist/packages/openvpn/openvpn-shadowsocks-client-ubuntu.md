@@ -1,14 +1,17 @@
-Prerequisites:<br/>
+<br/>Requirements:<br/>
 
 - openvpn + shadowsocks server
 
-if you have aws account you can setup an ec2 intance with terraform:<br/>
+if you have an aws account you can setup an ec2 intance with terraform:<br/>
 
 [ec2 instance: openvpn + shadowsocks server + http proxy](https://github.com/yunielrc/iac-aws-terraform/tree/main/openvpn-shadowsocks-proxy)
 
-Or install with a script in your server:<br/>
+Or install in your server:<br/>
 
-[openvpn + shadowsocks server install script](wget -qO - <https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux> | bash)
+```sh
+# dependencies: docker, docker-compose
+wget -qO - https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux | bash
+```
 
 Install openvpn + shadowsocks client:<br/>
 
