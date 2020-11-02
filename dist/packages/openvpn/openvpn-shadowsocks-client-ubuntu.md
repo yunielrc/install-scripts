@@ -11,7 +11,7 @@ Or install in your server:<br/>
 
 ```sh
 # dependencies: docker, docker-compose
-wget -qO - https://git.io/JT5TG?=openvpn-shadowsocks-server-linux | bash
+wget -qO - https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux | bash
 ```
 
 Install openvpn + shadowsocks client:<br/>
