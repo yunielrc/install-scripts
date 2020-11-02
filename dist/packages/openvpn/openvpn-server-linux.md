@@ -1,4 +1,4 @@
-Dependencies:
+Dependencies: <br/>
 
 - docker
 - docker-compose

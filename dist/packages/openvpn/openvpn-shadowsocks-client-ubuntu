@@ -15,8 +15,8 @@ set -euEo pipefail
 . <(wget -qO - 'https://git.io/JT5fS?=bl.bash')
 
 # Environment parameters
-## shadowsocks client
 readonly WORKING_DIR="${WORKING_DIR:-"$PWD"}"
+## shadowsocks client
 readonly SS_SERVER_IP="$SS_SERVER_IP"
 readonly SS_SERVER_PORT="$SS_SERVER_PORT"
 readonly SS_PASSWORD="$SS_PASSWORD"
@@ -74,6 +74,7 @@ setup_openvpn_client() {
 
   local openvpn_profile_name="ovpn-ssclient"
 
+  echo -e "\n>>Installing openvpn"
   sudo apt-get update -qy
   sudo apt-get install -y openvpn
 
@@ -100,7 +101,7 @@ setup_openvpn_client() {
 
 main() {
   # install dependencies
-  type -P docker docker-compose || wget -qO - https://git.io/JJaKZ?=docker-ubuntu | bash
+  type -P docker docker-compose >/dev/null || wget -qO - https://git.io/JJaKZ?=docker-ubuntu | bash
 
   [[ ! -d "$WORKING_DIR" ]] && mkdir -p "$WORKING_DIR"
   cd "$WORKING_DIR"
@@ -108,8 +109,8 @@ main() {
   cat <<-EOF
 
 >>Environment parameters:
-## shadowsocks client
 WORKING_DIR=${WORKING_DIR}
+## shadowsocks client
 SS_SERVER_IP=${SS_SERVER_IP}
 SS_SERVER_PORT=${SS_SERVER_PORT}
 SS_PASSWORD=${SS_PASSWORD}
