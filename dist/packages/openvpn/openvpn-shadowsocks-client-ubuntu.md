@@ -18,7 +18,7 @@ Install openvpn + shadowsocks client:<br/>
 
 ```sh
 wget -qO -  https://git.io/JT9Gz?=openvpn-shadowsocks-client-ubuntu |
-  WORKING_DIR=<work_dir> \                      # defautl: working directory  [optional]
+  WORKING_DIR=<work_dir> \                      # default: working directory  [optional]
   SS_SERVER_IP=<ss_server_ip> \                 #                             [required]
   SS_SERVER_PORT=<ss_server_port> \             #                             [required]
   SS_PASSWORD=<ss_password> \                   #                             [required]

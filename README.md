@@ -10,56 +10,56 @@ Install apps in easy way from the command line
 - **4kvideodownloader** (GUI)
 
 
-> 4kvideodownloader-ubuntu
+**4kvideodownloader-ubuntu**
 ```sh
 wget -qO - https://git.io/JTlFT?=4kvideodownloader-ubuntu | bash
 ```
 - **aws-cli**
 
 
-> aws-cli-linux
+**aws-cli-linux**
 ```sh
 wget -qO - https://git.io/JTlb6?=aws-cli-linux | bash
 ```
 - **brew**
 
 
-> brew-ubuntu
+**brew-ubuntu**
 ```sh
 wget -qO - https://git.io/JTlbH?=brew-ubuntu | bash
 ```
 - **docker**
 
 
-> docker-ubuntu
+**docker-ubuntu**
 ```sh
 wget -qO - https://git.io/JJaKZ?=docker-ubuntu | bash
 ```
 - **electrum** (GUI)
 
 
-> electrum-linux
+**electrum-linux**
 ```sh
 wget -qO - https://git.io/JTlNe?=electrum-linux | bash
 ```
 - **google-chrome** (GUI)
 
 
-> google-chrome-ubuntu
+**google-chrome-ubuntu**
 ```sh
 wget -qO - https://git.io/JTlNm?=google-chrome-ubuntu | bash
 ```
 - **opensnitch**
 
 
-> opensnitch-ubuntu
+**opensnitch-ubuntu**
 ```sh
 wget -qO - https://git.io/JT6Fo?=opensnitch-ubuntu | bash
 ```
 - **openvpn**
 
 
-> openvpn-shadowsocks-client-ubuntu
+**openvpn-shadowsocks-client-ubuntu**
 <br/>
 Requirements:<br/>
 
@@ -80,7 +80,7 @@ Install openvpn + shadowsocks client:<br/>
 
 ```sh
 wget -qO -  https://git.io/JT9Gz?=openvpn-shadowsocks-client-ubuntu |
-  WORKING_DIR=<work_dir> \                      # defautl: working directory  [optional]
+  WORKING_DIR=<work_dir> \                      # default: working directory  [optional]
   SS_SERVER_IP=<ss_server_ip> \                 #                             [required]
   SS_SERVER_PORT=<ss_server_port> \             #                             [required]
   SS_PASSWORD=<ss_password> \                   #                             [required]
@@ -109,7 +109,7 @@ services:
       - "${ss_port}:1080"
 ```
 
-> openvpn-shadowsocks-server-linux
+**openvpn-shadowsocks-server-linux**
 <br/>
 Dependencies: <br/>
 
@@ -166,12 +166,12 @@ volumes:
   openvpn_data:
 ```
 
-> scripts/vpn-toggle
+**scripts/vpn-toggle**
 ```sh
 wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/openvpn/scripts/vpn-toggle | bash
 ```
 
-> openvpn-server-linux
+**openvpn-server-linux**
 <br/>
 Dependencies: <br/>
 
@@ -217,49 +217,49 @@ volumes:
 - **popcorn-time** (GUI)
 
 
-> popcorn-time-ubuntu
+**popcorn-time-ubuntu**
 ```sh
 wget -qO - https://git.io/JTlNs?=popcorn-time-ubuntu | bash
 ```
 - **postman** (GUI)
 
 
-> postman-linux
+**postman-linux**
 ```sh
 wget -qO - https://git.io/JTlNZ?=postman-linux | bash
 ```
 - **staruml** (GUI)
 
 
-> staruml-linux
+**staruml-linux**
 ```sh
 wget -qO - https://git.io/JTlNn?=staruml-linux | bash
 ```
 - **stremio** (GUI)
 
 
-> stremio-ubuntu
+**stremio-ubuntu**
 ```sh
 wget -qO - https://git.io/JTlNl?=stremio-ubuntu | bash
 ```
 - **telegram** (GUI)
 
 
-> telegram-linux
+**telegram-linux**
 ```sh
 wget -qO - https://git.io/JTlNB?=telegram-linux | bash
 ```
 - **vagrant**
 
 
-> vagrant-ubuntu
+**vagrant-ubuntu**
 ```sh
 wget -qO - https://git.io/JTlNR?=vagrant-ubuntu | bash
 ```
 - **vscode** (GUI)
 
 
-> vscode-ubuntu
+**vscode-ubuntu**
 ```sh
 wget -qO - https://git.io/JTlNu?=vscode-ubuntu | bash
 ```
