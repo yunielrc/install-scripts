@@ -65,7 +65,7 @@ EOF
   fi
 
   echo -e "\n>> Starting shadowsocks client service on port ${ss_port}"
-  docker-compose up -d
+  sudo docker-compose up -d
 }
 
 setup_openvpn_client() {
@@ -89,7 +89,7 @@ setup_openvpn_client() {
   echo "${USER} ALL=NOPASSWD:$(type -P systemctl)" |
     sudo tee "/etc/sudoers.d/${USER}-nopasswd-systemctl"
 
-  # add keyboard shortcuts if running environment it's ubuntu gnome desktop
+  # add keyboard shortcuts if running environment is ubuntu gnome desktop
   if [[ "${XDG_CURRENT_DESKTOP:-}" =~ (GNOME|gnome) ]]; then
     echo -e "\n>> Adding vpn-toggle keyboard shortcut: ${toggle_vpn_keybind}"
     bl::gnome_add_custom_keybinding 'VPN Toggle' \
@@ -99,6 +99,9 @@ setup_openvpn_client() {
 }
 
 main() {
+  # install dependencies
+  type -P docker docker-compose || wget -qO - https://git.io/JJaKZ?=docker-ubuntu | bash
+
   [[ ! -d "$WORKING_DIR" ]] && mkdir -p "$WORKING_DIR"
   cd "$WORKING_DIR"
 

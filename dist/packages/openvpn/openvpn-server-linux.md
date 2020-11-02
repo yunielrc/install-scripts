@@ -1,3 +1,8 @@
+Dependencies:
+
+- docker
+- docker-compose
+
 ```sh
 wget -qO - https://git.io/JT9G2?=openvpn-server-linux | bash
 ```

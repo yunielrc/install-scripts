@@ -65,6 +65,11 @@ wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dis
 ```
 
 > openvpn-shadowsocks-server-linux
+Dependencies:
+
+- docker
+- docker-compose
+
 ```sh
 wget -qO - https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux | bash
 ```
@@ -121,6 +126,11 @@ wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dis
 ```
 
 > openvpn-server-linux
+Dependencies:
+
+- docker
+- docker-compose
+
 ```sh
 wget -qO - https://git.io/JT9G2?=openvpn-server-linux | bash
 ```

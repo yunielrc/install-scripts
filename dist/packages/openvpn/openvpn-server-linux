@@ -78,7 +78,7 @@ EOF
 
   # Start openvpn server
   echo -e "\n>> Starting openvpn server"
-  docker-compose up -d
+  sudo docker-compose up -d
 
   cat <<-EOF
 

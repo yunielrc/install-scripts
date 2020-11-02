@@ -2,7 +2,7 @@
 set -euEo pipefail
 
 #
-# Configure openvpn server defined in docker-compose.yml
+# Configure openvpn server defined in sudo docker-compose.yml
 #
 # Parameters
 #   openvpn_client_name
@@ -23,10 +23,10 @@ configure_openvpn() {
   local -r openvpn_protocol="$4"
   # Initialize the configuration files
   echo -e "\n>> Initializing configuration files"
-  docker-compose run --rm openvpn \
+  sudo docker-compose run --rm openvpn \
     ovpn_genconfig -u "${openvpn_protocol}://${openvpn_host}"
   # Add 'duplicate-cn' option to vpn config
-  docker-compose run --rm --entrypoint /bin/sh \
+  sudo docker-compose run --rm --entrypoint /bin/sh \
     openvpn \
     -c 'echo duplicate-cn >> /etc/openvpn/openvpn.conf'
   echo ">> DONE. Initializing configuration files"
@@ -34,13 +34,13 @@ configure_openvpn() {
   # Initialize certificates
   echo -e "\n>> Initializing certificates"
   echo "$openvpn_host" |
-    docker-compose run --rm openvpn \
+    sudo docker-compose run --rm openvpn \
       ovpn_initpki nopass
   echo ">> DONE. Initializing certificates"
 
   # Generate a client certificate without a passphrase
   echo -e "\n>> Generating a client certificate without a passphrase"
-  docker-compose run --rm openvpn \
+  sudo docker-compose run --rm openvpn \
     easyrsa build-client-full "${openvpn_client_name}" nopass
   echo ">> DONE. Generating a client certificate without a passphrase"
 
@@ -48,8 +48,8 @@ configure_openvpn() {
 
   ## Retrieve the client configuration with embedded certificates
   echo -e "\n>> Retrieving the client configuration with embedded certificates"
-  docker-compose run --rm openvpn \
-    ovpn_getclient "${openvpn_client_name}" >"${openvpn_client_name}.ovpn"
+  sudo docker-compose run --rm openvpn \
+    ovpn_getclient "${openvpn_client_name}" | sudo tee "${openvpn_client_name}.ovpn"
 
   dos2unix "${openvpn_client_name}.ovpn"
 
