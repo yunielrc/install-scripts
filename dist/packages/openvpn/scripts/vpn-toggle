@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+#
+# Toggle vpn connection
+#
+
+set -euEo pipefail
+
+readonly SCRIPT_NAME="$(basename "$0")"
+
+notify() {
+  if type -P notify-send &>/dev/null; then
+    notify-send "$SCRIPT_NAME" "$*"
+  fi
+}
+
+inf() {
+  notify "$*"
+  echo "${SCRIPT_NAME}: $*"
+}
+
+err() {
+  notify "$*"
+  echo "${SCRIPT_NAME}: $*" >&2
+}
+
+public_ip() {
+  dig +timeout=5 +short myip.opendns.com @resolver1.opendns.com 2>/dev/null || {
+    echo 'public_ip_get_error'
+  }
+}
+
+if systemctl is-active openvpn-client@ovpn-ssclient.service; then
+  sudo systemctl stop openvpn-client@ovpn-ssclient.service || {
+    err 'Error al intentar desconectar la vpn' && exit 1
+  }
+  sleep 1
+  inf "VPN Desconectada"
+else
+  readonly isp_ip="$(public_ip)"
+
+  sudo systemctl start openvpn-client@ovpn-ssclient.service || {
+    err 'Error al intentar conectar la vpn' && exit 1
+  }
+
+  sleep 1
+  cur_ip="$(public_ip)"
+  retries=6
+
+  while [[ "$cur_ip" == "$isp_ip" && $((retries--)) -gt 0 ]]; do
+    sleep 1
+    cur_ip="$(public_ip)"
+  done
+
+  if [[ "$cur_ip" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ && "$cur_ip" != "$isp_ip" ]]; then
+    inf "VPN Conectada, ip actual: ${cur_ip}, prev: ${isp_ip}"
+  else
+    err "No se pudo conectar la vpn" && exit 1
+  fi
+fi
+
+exit 0

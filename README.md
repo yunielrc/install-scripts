@@ -59,6 +59,11 @@ wget -qO - https://git.io/JT6Fo?=opensnitch-ubuntu | bash
 - **openvpn**
 
 
+> openvpn-shadowsocks-client-ubuntu
+```sh
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/openvpn/openvpn-shadowsocks-client-ubuntu | bash
+```
+
 > openvpn-shadowsocks-server-linux
 ```sh
 wget -qO - https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux | bash
@@ -108,6 +113,11 @@ services:
 
 volumes:
   openvpn_data:
+```
+
+> scripts/vpn-toggle
+```sh
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/openvpn/scripts/vpn-toggle | bash
 ```
 
 > openvpn-server-linux
