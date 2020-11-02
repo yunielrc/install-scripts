@@ -1,5 +1,5 @@
 <br/>
-<br/>Requirements:<br/>
+Requirements:<br/>
 
 - openvpn + shadowsocks server
 

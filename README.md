@@ -61,7 +61,7 @@ wget -qO - https://git.io/JT6Fo?=opensnitch-ubuntu | bash
 
 > openvpn-shadowsocks-client-ubuntu
 <br/>
-<br/>Requirements:<br/>
+Requirements:<br/>
 
 - openvpn + shadowsocks server
 
@@ -111,7 +111,7 @@ services:
 
 > openvpn-shadowsocks-server-linux
 <br/>
-<br/>Dependencies: <br/>
+Dependencies: <br/>
 
 - docker
 - docker-compose
@@ -173,7 +173,7 @@ wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dis
 
 > openvpn-server-linux
 <br/>
-<br/>Dependencies: <br/>
+Dependencies: <br/>
 
 - docker
 - docker-compose

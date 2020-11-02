@@ -1,5 +1,5 @@
 <br/>
-<br/>Dependencies: <br/>
+Dependencies: <br/>
 
 - docker
 - docker-compose
