@@ -11,13 +11,13 @@ Or install in your server:<br/>
 
 ```sh
 # dependencies: docker, docker-compose
-wget -qO - https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux | bash
+wget -qO - https://git.io/JT5TG?=openvpn-shadowsocks-server-linux | bash
 ```
 
 Install openvpn + shadowsocks client:<br/>
 
 ```sh
-wget -qO -  https://git.io/JT9Gz?=openvpn-shadowsocks-client-ubuntu |
+wget -qO -  https://git.io/JT5TG?=openvpn-shadowsocks-client-ubuntu |
   WORKING_DIR=<work_dir> \                      # default: working directory  [optional]
   SS_SERVER_IP=<ss_server_ip> \                 #                             [required]
   SS_SERVER_PORT=<ss_server_port> \             #                             [required]
