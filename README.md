@@ -166,11 +166,6 @@ volumes:
   openvpn_data:
 ```
 
-**scripts/vpn-toggle**<br/>
-```sh
-wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/openvpn/scripts/vpn-toggle | bash
-```
-
 **openvpn-server-linux**<br/>
 <br/>
 Dependencies: <br/>

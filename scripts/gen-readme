@@ -36,7 +36,7 @@ EOF
       (
         cd "./${pkg}"
 
-        for pkg_script in $(find . -type f -exec file {} \; | grep 'Bourne-Again' | cut -d':' -f 1 | sed 's/^\.\///'); do
+        for pkg_script in $(find . -maxdepth 1 -type f -exec file {} \; | grep 'Bourne-Again' | cut -d':' -f 1 | sed 's/^\.\///'); do
           echo -e "\n**${pkg_script}**<br/>"
           if [[ -f "${pkg_script}.md" ]]; then
             cat "${pkg_script}.md"
