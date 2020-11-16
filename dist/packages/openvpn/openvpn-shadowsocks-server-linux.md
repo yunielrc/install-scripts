@@ -9,7 +9,7 @@ wget -qO - https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux | bash
 ```
 
 With custom parameters:
-_al parameters are optional_
+_all parameters are optional_
 
 ```sh
 wget -qO -  https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux |
