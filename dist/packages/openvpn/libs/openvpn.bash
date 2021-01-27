@@ -42,6 +42,7 @@ configure_openvpn() {
   echo -e "\n>> Generating a client certificate without a passphrase"
   sudo docker-compose run --rm openvpn \
     easyrsa build-client-full "${openvpn_client_name}" nopass
+  sudo chown "${USER}:${USER}" "${openvpn_client_name}.ovpn"
   echo ">> DONE. Generating a client certificate without a passphrase"
 
   # Client configuration
@@ -49,12 +50,12 @@ configure_openvpn() {
   ## Retrieve the client configuration with embedded certificates
   echo -e "\n>> Retrieving the client configuration with embedded certificates"
   sudo docker-compose run --rm openvpn \
-    ovpn_getclient "${openvpn_client_name}" | sudo tee "${openvpn_client_name}.ovpn"
+    ovpn_getclient "${openvpn_client_name}" | tee "${openvpn_client_name}.ovpn"
 
-  sudo dos2unix "${openvpn_client_name}.ovpn"
+  dos2unix "${openvpn_client_name}.ovpn"
 
   ## Replaces vpn host port on vpn client profile
-  sudo sed -i "s/1194 ${openvpn_protocol}/${openvpn_port} ${openvpn_protocol}/" \
+  sed -i "s/1194 ${openvpn_protocol}/${openvpn_port} ${openvpn_protocol}/" \
     "${openvpn_client_name}.ovpn"
   echo ">> DONE. Retrieving the client configuration with embedded certificates"
 
