@@ -42,7 +42,6 @@ configure_openvpn() {
   echo -e "\n>> Generating a client certificate without a passphrase"
   sudo docker-compose run --rm openvpn \
     easyrsa build-client-full "${openvpn_client_name}" nopass
-  sudo chown "${USER}:${USER}" "${openvpn_client_name}.ovpn"
   echo ">> DONE. Generating a client certificate without a passphrase"
 
   # Client configuration
