@@ -94,6 +94,7 @@ EOF
     "$OPENVPN_PROTOCOL"
 
   # Add shadowsocks proxy support on vpn client profile
+  sudo chown "${USER}:${USER}" "${OPENVPN_CLIENT_NAME}.ovpn"
   cat <<-EOF >>"${OPENVPN_CLIENT_NAME}.ovpn"
 proto tcp
 socks-proxy 127.0.0.1 ${SS_CLIENT_PORT}
