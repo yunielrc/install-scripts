@@ -49,12 +49,12 @@ configure_openvpn() {
   ## Retrieve the client configuration with embedded certificates
   echo -e "\n>> Retrieving the client configuration with embedded certificates"
   sudo docker-compose run --rm openvpn \
-    ovpn_getclient "${openvpn_client_name}" | tee "${openvpn_client_name}.ovpn"
+    ovpn_getclient "${openvpn_client_name}" | sudo tee "${openvpn_client_name}.ovpn"
 
-  dos2unix "${openvpn_client_name}.ovpn"
+  sudo dos2unix "${openvpn_client_name}.ovpn"
 
   ## Replaces vpn host port on vpn client profile
-  sed -i "s/1194 ${openvpn_protocol}/${openvpn_port} ${openvpn_protocol}/" \
+  sudo sed -i "s/1194 ${openvpn_protocol}/${openvpn_port} ${openvpn_protocol}/" \
     "${openvpn_client_name}.ovpn"
   echo ">> DONE. Retrieving the client configuration with embedded certificates"
 
