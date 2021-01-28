@@ -5,7 +5,7 @@ Dependencies: <br/>
 - docker-compose
 
 ```sh
-wget -qO - https://git.io/JT9G2?=openvpn-server-linux | bash
+wget -qO - https://git.io/JJaKZ?=docker-ubuntu | bash
 ```
 
 With custom parameters:
