@@ -73,7 +73,7 @@ Or install in your server:<br/>
 
 ```sh
 # dependencies: docker, docker-compose
-wget -qO - https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux | bash
+wget -qO - https://git.io/JJaKZ?=docker-ubuntu | bash
 ```
 
 Install openvpn + shadowsocks client:<br/>
@@ -117,7 +117,7 @@ Dependencies: <br/>
 - docker-compose
 
 ```sh
-wget -qO - https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux | bash
+wget -qO - https://git.io/JJaKZ?=docker-ubuntu | bash
 ```
 
 With custom parameters:
