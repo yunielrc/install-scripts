@@ -11,6 +11,7 @@ readonly WORKING_DIR="${WORKING_DIR:-"$PWD"}"
 readonly SS_CLIENT_PORT="${SS_CLIENT_PORT:-1080}"
 readonly SS_PORT="${SS_PORT:-443}"
 readonly SS_PASSWORD="${SS_PASSWORD:-"$(openssl rand -base64 32)"}"
+readonly SS_HOST="${SS_HOST:-'ssserver'}"
 # openvpn
 readonly OPENVPN_CLIENT_NAME="${OPENVPN_CLIENT_NAME:-"profile-${PUBLIC_IP}"}"
 readonly OPENVPN_HOST="${OPENVPN_HOST:-'openvpn'}"
@@ -23,6 +24,8 @@ readonly OPENVPN_PROTOCOL='tcp'
 make_compose_file() {
   local ss_port="$1"
   local ss_password="$2"
+  local ss_host="$3"
+  local openvpn_host="$4"
 
   if [[ ! -f docker-compose.yml ]]; then
     echo -e "\n>> Creating docker-compose.yml in current directory"
@@ -33,7 +36,7 @@ version: "3.3"
 services:
   openvpn:
     image: "kylemanna/openvpn:2.4"
-    container_name: openvpn
+    container_name: ${openvpn_host}
     restart: always
     expose:
       - "1194/tcp"
@@ -45,7 +48,7 @@ services:
   ssserver:
     image: yunielrc/shadowsocks-rust-server
     restart: always
-    container_name: ssserver
+    container_name: ${ss_host}
     environment:
       - "SS_PASSWORD=${ss_password}"
       - "SS_PLUGIN=v2ray-plugin"
