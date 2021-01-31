@@ -82,6 +82,7 @@ main() {
   SS_CLIENT_PORT=${SS_CLIENT_PORT}
   SS_PORT=${SS_PORT}
   SS_PASSWORD=${SS_PASSWORD}
+  SS_HOST=${SS_HOST}
   ## openvpn server
   OPENVPN_HOST=${OPENVPN_HOST}
   OPENVPN_PORT=${OPENVPN_PORT}
@@ -91,7 +92,9 @@ EOF
 
   make_compose_file \
     "$SS_PORT" \
-    "$SS_PASSWORD"
+    "$SS_PASSWORD" \
+    "$SS_HOST" \
+    "$OPENVPN_HOST"
 
   configure_openvpn \
     "$OPENVPN_CLIENT_NAME" \
