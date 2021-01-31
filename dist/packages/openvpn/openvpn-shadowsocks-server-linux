@@ -13,11 +13,11 @@ readonly SS_PORT="${SS_PORT:-443}"
 readonly SS_PASSWORD="${SS_PASSWORD:-"$(openssl rand -base64 32)"}"
 # openvpn
 readonly OPENVPN_CLIENT_NAME="${OPENVPN_CLIENT_NAME:-"profile-${PUBLIC_IP}"}"
+readonly OPENVPN_HOST="${OPENVPN_HOST:-'openvpn'}"
+readonly OPENVPN_PORT="${OPENVPN_PORT:-1194}"
 
 # Global Variables
 readonly PUBLIC_IP="$(wget -qO - ifconfig.me)"
-readonly OPENVPN_HOST='openvpn'
-readonly OPENVPN_PORT=1194
 readonly OPENVPN_PROTOCOL='tcp'
 
 make_compose_file() {
@@ -79,6 +79,9 @@ main() {
   SS_CLIENT_PORT=${SS_CLIENT_PORT}
   SS_PORT=${SS_PORT}
   SS_PASSWORD=${SS_PASSWORD}
+  ## openvpn server
+  OPENVPN_HOST=${OPENVPN_HOST}
+  OPENVPN_PORT=${OPENVPN_PORT}
 EOF
 
   echo -e "\n>> Working directory: $(pwd)"
