@@ -20,7 +20,6 @@ wget -qO -  https://git.io/JT9Gz?=openvpn-shadowsocks-server-linux |
   SS_HOST=<shadowsocks host name> \           # ssserver                        [default]
   OPENVPN_CLIENT_NAME=<vpn client name> \     # profile-${PUBLIC_IP}            [default]
   OPENVPN_HOST=<vpn host name> \              # openvpn                         [default]
-  OPENVPN_PORT=<vpn port> \                   # 1191                            [default]
   bash
 ```
 

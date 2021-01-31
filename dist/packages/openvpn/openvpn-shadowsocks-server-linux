@@ -15,11 +15,11 @@ readonly SS_HOST="${SS_HOST:-'ssserver'}"
 # openvpn
 readonly OPENVPN_CLIENT_NAME="${OPENVPN_CLIENT_NAME:-"profile-${PUBLIC_IP}"}"
 readonly OPENVPN_HOST="${OPENVPN_HOST:-'openvpn'}"
-readonly OPENVPN_PORT="${OPENVPN_PORT:-1194}"
 
 # Global Variables
 readonly PUBLIC_IP="$(wget -qO - ifconfig.me)"
 readonly OPENVPN_PROTOCOL='tcp'
+readonly OPENVPN_PORT=1194
 
 make_compose_file() {
   local ss_port="$1"
@@ -85,7 +85,6 @@ main() {
   SS_HOST=${SS_HOST}
   ## openvpn server
   OPENVPN_HOST=${OPENVPN_HOST}
-  OPENVPN_PORT=${OPENVPN_PORT}
 EOF
 
   echo -e "\n>> Working directory: $(pwd)"
