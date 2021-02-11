@@ -32,6 +32,7 @@ sudo apt-get update -y
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # install docker compose
+unset https_proxy
 readonly latest="$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | grep -P 'tag_name' | head -n 1 | sed 's/"//g' | grep -Po '\d+\.\d+\.\d+')"
 sudo curl -L "https://github.com/docker/compose/releases/download/${latest}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
