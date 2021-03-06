@@ -80,7 +80,8 @@ rc-update add sslocal
 
 # Sets update script
 echo '> Setting update script'
-wget -q https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/shadowsocks/scripts/shadowsocks-client-alpine-update -O /etc/periodic/daily/shadowsocks-client-alpine-update
+wget -q https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/shadowsocks/scripts/shadowsocks-client-alpine-update \
+  -O /etc/periodic/daily/shadowsocks-client-alpine-update
 chmod -v +x /etc/periodic/daily/shadowsocks-client-alpine-update
 
 cat <<-'EOF'
