@@ -50,7 +50,7 @@ cat <<-EOF >/etc/sslocal/config.json
   "password": "${SS_SERVER_PASSWORD}",
   "local_address": "0.0.0.0",
   "local_port": ${SS_PORT:-1080},
-  "timeout": "${SS_TIMEOUT:-300}",
+  "timeout": ${SS_TIMEOUT:-300},
   ${ss_plugin:-}
   "method": "${SS_ENCRYPT_METHOD:-aes-256-gcm}"
 }

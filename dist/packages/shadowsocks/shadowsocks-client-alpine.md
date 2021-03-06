@@ -12,7 +12,7 @@ wget -qO - https://git.io/JqTyQ?=shadowsocks-client-alpine |
   sh
 ```
 
-Just install sslocal & v2ray-plugin binaries, don't configure anything. Useful for updating
+Just install sslocal & v2ray-plugin binaries, don't configure anything. Useful for updating.
 
 ```sh
 wget -qO - https://git.io/JqTyQ?=shadowsocks-client-alpine |
