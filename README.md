@@ -232,7 +232,7 @@ wget -qO - https://git.io/JTlNZ?=postman-linux | bash
 <br/>
 
 ```sh
-wget -qO -  https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/shadowsocks/shadowsocks-client-alpine |
+wget -qO - https://git.io/JqTyQ?=shadowsocks-client-alpine |
   SS_SERVER_IP=<shadowsocks_server_ip>  \
   SS_SERVER_PORT=<shadowsocks_server_port>  \
   SS_SERVER_PASSWORD=<shadowsocks_server_password>  \
@@ -246,8 +246,8 @@ wget -qO -  https://raw.githubusercontent.com/yunielrc/install-scripts/master/di
 Just install sslocal & v2ray-plugin binaries, don't configure anything. Useful for updating
 
 ```sh
-wget -qO -  https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/shadowsocks/shadowsocks-client-alpine |
-  NOCONFIGURE=true  sh
+wget -qO - https://git.io/JqTyQ?=shadowsocks-client-alpine |
+  NOCONFIGURE=true sh
 ```
 - **staruml** (GUI)
 
