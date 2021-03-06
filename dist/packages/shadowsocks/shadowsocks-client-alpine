@@ -40,7 +40,7 @@ fi
 echo '> Setting config'
 [ -d /etc/sslocal ] || mkdir /etc/sslocal
 
-[ -n "${SS_PLUGIN:-}" ] &&
+[ -z "${SS_PLUGIN:-}" ] ||
   readonly ss_plugin="\"plugin\": \"${SS_PLUGIN}\","
 
 cat <<-EOF >/etc/sslocal/config.json
