@@ -7,59 +7,66 @@ Install apps in easy way from the command line
 
 ## Usage
 
-- **4kvideodownloader** (GUI)
+### 4kvideodownloader (GUI)
 
+#### 4kvideodownloader-ubuntu
 
-**4kvideodownloader-ubuntu**<br/>
 ```sh
 wget -qO - https://git.io/JTlFT?=4kvideodownloader-ubuntu | bash
 ```
-- **aws-cli**
 
+### aws-cli
 
-**aws-cli-linux**<br/>
+#### aws-cli-linux
+
 ```sh
 wget -qO - https://git.io/JTlb6?=aws-cli-linux | bash
 ```
-- **brew**
 
+### brew
 
-**brew-ubuntu**<br/>
+#### brew-ubuntu
+
 ```sh
 wget -qO - https://git.io/JTlbH?=brew-ubuntu | bash
 ```
-- **docker**
 
+### docker
 
-**docker-ubuntu**<br/>
+#### docker-ubuntu
+
 ```sh
 wget -qO - https://git.io/JJaKZ?=docker-ubuntu | bash
 ```
-- **electrum** (GUI)
 
+### electrum (GUI)
 
-**electrum-linux**<br/>
+#### electrum-linux
+
 ```sh
 wget -qO - https://git.io/JTlNe?=electrum-linux | bash
 ```
-- **google-chrome** (GUI)
 
+### google-chrome (GUI)
 
-**google-chrome-ubuntu**<br/>
+#### google-chrome-ubuntu
+
 ```sh
 wget -qO - https://git.io/JTlNm?=google-chrome-ubuntu | bash
 ```
-- **opensnitch**
 
+### opensnitch
 
-**opensnitch-ubuntu**<br/>
+#### opensnitch-ubuntu
+
 ```sh
 wget -qO - https://git.io/JT6Fo?=opensnitch-ubuntu | bash
 ```
-- **openvpn**
 
+### openvpn
 
-**openvpn-shadowsocks-client-ubuntu**<br/>
+#### openvpn-shadowsocks-client-ubuntu
+
 <br/>
 Requirements:<br/>
 
@@ -109,7 +116,8 @@ services:
       - "${ss_port}:1080"
 ```
 
-**openvpn-shadowsocks-server-linux**<br/>
+#### openvpn-shadowsocks-server-linux
+
 <br/>
 Dependencies: <br/>
 
@@ -168,7 +176,8 @@ volumes:
   openvpn_data:
 ```
 
-**openvpn-server-linux**<br/>
+#### openvpn-server-linux
+
 <br/>
 Dependencies: <br/>
 
@@ -211,24 +220,27 @@ services:
 volumes:
   openvpn_data:
 ```
-- **popcorn-time** (GUI)
 
+### popcorn-time (GUI)
 
-**popcorn-time-ubuntu**<br/>
+#### popcorn-time-ubuntu
+
 ```sh
 wget -qO - https://git.io/JTlNs?=popcorn-time-ubuntu | bash
 ```
-- **postman** (GUI)
 
+### postman (GUI)
 
-**postman-linux**<br/>
+#### postman-linux
+
 ```sh
 wget -qO - https://git.io/JTlNZ?=postman-linux | bash
 ```
-- **shadowsocks**
 
+### shadowsocks
 
-**shadowsocks-client-alpine**<br/>
+#### shadowsocks-client-alpine
+
 <br/>
 
 ```sh
@@ -249,41 +261,47 @@ Just install sslocal & v2ray-plugin binaries, don't configure anything. Useful f
 wget -qO - https://git.io/JqTyQ?=shadowsocks-client-alpine |
   NOCONFIGURE=true sh
 ```
-- **staruml** (GUI)
 
+### staruml (GUI)
 
-**staruml-linux**<br/>
+#### staruml-linux
+
 ```sh
 wget -qO - https://git.io/JTlNn?=staruml-linux | bash
 ```
-- **stremio** (GUI)
 
+### stremio (GUI)
 
-**stremio-ubuntu**<br/>
+#### stremio-ubuntu
+
 ```sh
 wget -qO - https://git.io/JTlNl?=stremio-ubuntu | bash
 ```
-- **telegram** (GUI)
 
+### telegram (GUI)
 
-**telegram-linux**<br/>
+#### telegram-linux
+
 ```sh
 wget -qO - https://git.io/JTlNB?=telegram-linux | bash
 ```
-- **vagrant**
 
+### vagrant
 
-**vagrant-ubuntu**<br/>
+#### vagrant-ubuntu
+
 ```sh
 wget -qO - https://git.io/JTlNR?=vagrant-ubuntu | bash
 ```
-- **vscode** (GUI)
 
+### vscode (GUI)
 
-**vscode-ubuntu**<br/>
+#### vscode-ubuntu
+
 ```sh
 wget -qO - https://git.io/JTlNu?=vscode-ubuntu | bash
 ```
+
 ## If you want to test
 
 OS: ubuntu 20.04

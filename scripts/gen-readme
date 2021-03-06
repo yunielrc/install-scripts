@@ -28,18 +28,19 @@ EOF
     for pkg in *; do
 
       if [[ -f "./${pkg}/.gui" ]]; then
-        echo -e "- **${pkg}** (GUI)\n"
+        echo -e "### ${pkg} (GUI)\n"
       else
-        echo -e "- **${pkg}**\n"
+        echo -e "### ${pkg}\n"
       fi
 
       (
         cd "./${pkg}"
 
         for pkg_script in $(find . -maxdepth 1 -type f -exec file {} \; | grep -e 'Bourne-Again' -e 'sh script' | cut -d':' -f 1 | sed 's/^\.\///'); do
-          echo -e "\n**${pkg_script}**<br/>"
+          echo -e "#### ${pkg_script}\n"
           if [[ -f "${pkg_script}.md" ]]; then
             cat "${pkg_script}.md"
+            echo
             continue
           fi
 
@@ -50,6 +51,7 @@ EOF
             echo "wget -qO - ${iscript}/${pkg}/${pkg_script} | bash"
           fi
           echo '```'
+          echo
         done
       )
     done
