@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+set -eu
+# shellcheck disable=SC1007
+cd -- "$(dirname -- "$0")"
+
+set -a
+. ../../../.env
+set +a
+
+sh ../shadowsocks-client-alpine | grep '> SUCCESS'
+
+# test: Downloads and installs binaries
+type sslocal
+type v2ray-plugin
+# test: Sets config
+[ -f /etc/sslocal/config.json ]
+grep "$SS_SERVER_IP" /etc/sslocal/config.json
+# test: Sets service init script
+[ -f /etc/init.d/sslocal ]
+# test: Enables the service
+rc-service sslocal status | grep stopped
+# test: Sets update script
+[ -x /etc/periodic/daily/shadowsocks-client-alpine-update ]

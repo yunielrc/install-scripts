@@ -17,7 +17,8 @@ set -eu
 #   # installation script behavior
 #   NOCONFIGURE=false               [DEFAULT]
 
-## downloads and installs sslocal & v2ray-plugin
+# Downloads and installs binaries
+echo '> Downloading & installing binaries'
 (
   cd "$(mktemp -d)"
   wget -qO - "$(wget -qO - 'https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest' | grep -om 1 'https://.*shadowsocks.*x86_64-unknown-linux-musl.tar.xz')" | tar xJf -
@@ -30,10 +31,13 @@ set -eu
 )
 
 if [ "${NOCONFIGURE:-false}" = true ]; then
+  echo '> Configuration skipped'
+  echo '> SUCCESS'
   exit 0
 fi
 
-## adds sslocal config
+# Sets config
+echo '> Setting config'
 [ -d /etc/sslocal ] || mkdir /etc/sslocal
 
 [ -n "${SS_PLUGIN:-}" ] &&
@@ -51,7 +55,9 @@ cat <<-EOF >/etc/sslocal/config.json
   "method": "${SS_ENCRYPT_METHOD:-aes-256-gcm}"
 }
 EOF
-## adds sslocal openrc init script
+
+# Sets service init script
+echo '> Setting service init script'
 cat <<-'EOF' >/etc/init.d/sslocal
 #!/sbin/openrc-run
 
@@ -67,5 +73,20 @@ depend() {
 }
 EOF
 chmod +x /etc/init.d/sslocal
-## adds sslocal service
+
+# Enables the service
+echo '> Enabling service'
 rc-update add sslocal
+
+# Sets update script
+echo '> Setting update script'
+wget -q https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/shadowsocks/scripts/shadowsocks-client-alpine-update -O /etc/periodic/daily/shadowsocks-client-alpine-update
+chmod -v +x /etc/periodic/daily/shadowsocks-client-alpine-update
+
+cat <<-'EOF'
+> Service isn't started by default.
+  You can start it executing the command below:
+$ rc-service sslocal start
+EOF
+
+echo '> SUCCESS'

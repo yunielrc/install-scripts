@@ -1,5 +1,5 @@
 {
-  "shellcheck.exclude": ["1091", "1090", "2155"],
+  "shellcheck.exclude": ["1091", "1090", "2155", "2148"],
   "files.exclude": {
     ".vagrant": true
   },

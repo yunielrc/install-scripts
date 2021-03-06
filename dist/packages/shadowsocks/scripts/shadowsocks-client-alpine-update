@@ -11,6 +11,11 @@ set -eu
 #   FORCE=false         (OPTIONAL)
 #
 
+if ! ping -c 1 -W 5 1.1.1.1 >/dev/null 2>&1; then
+  echo "There isn't internet, aborting update"
+  exit 1
+fi
+
 readonly cur_local_version="$(! type sslocal >/dev/null 2>&1 || sslocal --version | grep -Eo '\d+\.\d+\.\d+')"
 readonly repo_latest_version="$(wget -qO - https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep -Em 1 '"tag_name":\s*"v\d+\.\d+\.\d+"' | grep -Eo '\d+\.\d+\.\d+')"
 
