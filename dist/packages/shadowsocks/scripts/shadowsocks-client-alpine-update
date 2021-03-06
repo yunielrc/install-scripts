@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+#
+# Updates shadowsocks client
+# > copy this script to /etc/cron.daily and give it execution permission
+#
+
+set -eu
+
+#
+# Environment Variables (PARAMETERS):
+#   FORCE=false         (OPTIONAL)
+#
+
+readonly cur_local_version="$(! type sslocal >/dev/null 2>&1 || sslocal --version | grep -Eo '\d+\.\d+\.\d+')"
+readonly repo_latest_version="$(wget -qO - https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest | grep -Em 1 '"tag_name":\s*"v\d+\.\d+\.\d+"' | grep -Eo '\d+\.\d+\.\d+')"
+
+# Check app version
+if [ "${cur_local_version:-}" = "$repo_latest_version" ] && [ "${FORCE:-false}" = false ]; then
+  echo "> shadowsocks client is currently updated, local version: ${cur_local_version} = repo latest version: ${repo_latest_version}
+"
+  exit 0
+fi
+
+echo "> Updating shadowsocks client, local version: ${cur_local_version} != repo latest version: ${repo_latest_version}
+"
+
+wget -qO - https://raw.githubusercontent.com/yunielrc/install-scripts/master/dist/packages/shadowsocks/shadowsocks-client-alpine |
+  NOCONFIGURE=true sh

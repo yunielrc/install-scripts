@@ -1,0 +1,71 @@
+#!/usr/bin/env sh
+#
+# Installs & configures shadowsocks client (sslocal)
+#
+
+set -eu
+
+# Environment Variables (PARAMETERS)
+#   # shadowsocks configuration (useless when NOCONFIGURE=true)
+#   SS_SERVER_IP
+#   SS_SERVER_PORT
+#   SS_SERVER_PASSWORD
+#   SS_PORT=1080                    [DEFAULT]
+#   SS_TIMEOUT=300                  [DEFAULT]
+#   SS_ENCRYPT_METHOD=aes-256-gcm   [DEFAULT]
+#   SS_PLUGIN                       [OPTIONAL]
+#   # installation script behavior
+#   NOCONFIGURE=false               [DEFAULT]
+
+## downloads and installs sslocal & v2ray-plugin
+(
+  cd "$(mktemp -d)"
+  wget -qO - "$(wget -qO - 'https://api.github.com/repos/shadowsocks/shadowsocks-rust/releases/latest' | grep -om 1 'https://.*shadowsocks.*x86_64-unknown-linux-musl.tar.xz')" | tar xJf -
+  mv sslocal /usr/bin
+
+  wget -qO - "$(wget -qO - 'https://api.github.com/repos/shadowsocks/v2ray-plugin/releases/latest' | grep -om 1 'https://.*v2ray-plugin-linux-amd64-.*.tar.gz')" | tar xzf -
+  mv v2ray-plugin_linux_amd64 /usr/bin/v2ray-plugin
+
+  rm ./*
+)
+
+if [ "${NOCONFIGURE:-false}" = true ]; then
+  exit 0
+fi
+
+## adds sslocal config
+[ -d /etc/sslocal ] || mkdir /etc/sslocal
+
+[ -n "${SS_PLUGIN:-}" ] &&
+  readonly ss_plugin="\"plugin\": \"${SS_PLUGIN}\","
+
+cat <<-EOF >/etc/sslocal/config.json
+{
+  "server": "${SS_SERVER_IP}",
+  "server_port": ${SS_SERVER_PORT},
+  "password": "${SS_SERVER_PASSWORD}",
+  "local_address": "0.0.0.0",
+  "local_port": ${SS_PORT:-1080},
+  "timeout": "${SS_TIMEOUT:-300}",
+  ${ss_plugin:-}
+  "method": "${SS_ENCRYPT_METHOD:-aes-256-gcm}"
+}
+EOF
+## adds sslocal openrc init script
+cat <<-'EOF' >/etc/init.d/sslocal
+#!/sbin/openrc-run
+
+name="$SVCNAME"
+command="/usr/bin/$SVCNAME"
+command_args='-c /etc/sslocal/config.json'
+command_args_background="-d --daemonize-pid /var/run/${SVCNAME}.pid"
+pidfile="/var/run/${SVCNAME}.pid"
+
+depend() {
+  need net
+  after firewall
+}
+EOF
+chmod +x /etc/init.d/sslocal
+## adds sslocal service
+rc-update add sslocal

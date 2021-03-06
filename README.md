@@ -225,6 +225,8 @@ wget -qO - https://git.io/JTlNs?=popcorn-time-ubuntu | bash
 ```sh
 wget -qO - https://git.io/JTlNZ?=postman-linux | bash
 ```
+- **shadowsocks**
+
 - **staruml** (GUI)
 
 
