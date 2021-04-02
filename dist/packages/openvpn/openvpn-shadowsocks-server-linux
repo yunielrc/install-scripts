@@ -17,7 +17,7 @@ readonly OPENVPN_CLIENT_NAME="${OPENVPN_CLIENT_NAME:-"profile-${PUBLIC_IP}"}"
 readonly OPENVPN_HOST="${OPENVPN_HOST:-openvpn}"
 
 # Global Variables
-readonly PUBLIC_IP="$(wget -qO - ifconfig.me)"
+readonly PUBLIC_IP="$(wget -qO - checkip.amazonaws.com)"
 readonly OPENVPN_PROTOCOL='tcp'
 readonly OPENVPN_PORT=1194
 
