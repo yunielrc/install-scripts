@@ -51,6 +51,9 @@ EOF
 }
 
 main() {
+  # install dependencies
+  type -P docker docker-compose >/dev/null || wget -qO - https://git.io/JJaKZ?=docker-ubuntu | bash
+
   [[ ! -d "$WORKING_DIR" ]] && mkdir -p "$WORKING_DIR"
   cd "$WORKING_DIR"
 
