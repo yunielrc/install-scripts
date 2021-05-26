@@ -18,6 +18,7 @@ wget -qO -  https://git.io/JT9G2?=openvpn-server-linux |
   OPENVPN_HOST=<vpn host> \                # server public ip               [default]
   OPENVPN_PORT=<vpn port> \                # 1194                           [default]
   OPENVPN_PROTOCOL=<vpn protocol> \        # udp                            [default]
+  OPENVPN_CONTAINER_NAME=<openvpn_container_name> \        # openvpn                            [default]
   bash
 ```
 
