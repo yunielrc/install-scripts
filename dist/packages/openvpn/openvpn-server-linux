@@ -14,10 +14,12 @@ readonly OPENVPN_CLIENT_NAME="${OPENVPN_CLIENT_NAME:-"profile-${PUBLIC_IP}"}"
 readonly OPENVPN_HOST="${OPENVPN_HOST:-"$PUBLIC_IP"}"
 readonly OPENVPN_PORT="${OPENVPN_PORT:-1194}"
 readonly OPENVPN_PROTOCOL="${OPENVPN_PROTOCOL:-udp}"
+readonly OPENVPN_CONTAINER_NAME="${OPENVPN_CONTAINER_NAME:-openvpn}"
 
 make_compose_file() {
   local -r openvpn_port="$1"
   local -r openvpn_protocol="$2"
+  local -r openvpn_container_name="$3"
 
   if [[ ! -f docker-compose.yml ]]; then
     echo -e "\n>> Creating docker-compose.yml in current directory"
@@ -27,7 +29,7 @@ make_compose_file() {
   services:
     openvpn:
       image: "kylemanna/openvpn:2.4"
-      container_name: openvpn
+      container_name: ${openvpn_container_name}
       restart: always
       ports:
         - "${openvpn_port}:1194/${openvpn_protocol}"
@@ -71,7 +73,8 @@ EOF
 
   make_compose_file \
     "$OPENVPN_PORT" \
-    "$OPENVPN_PROTOCOL"
+    "$OPENVPN_PROTOCOL" \
+    "$OPENVPN_CONTAINER_NAME"
 
   configure_openvpn \
     "$OPENVPN_CLIENT_NAME" \
