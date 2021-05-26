@@ -13,7 +13,6 @@ readonly WORKING_DIR="${WORKING_DIR:-"$PWD"}"
 readonly SS_CLIENT_PORT="${SS_CLIENT_PORT:-1080}"
 readonly SS_PORT="${SS_PORT:-443}"
 readonly SS_PASSWORD="${SS_PASSWORD:-"$(openssl rand -base64 32)"}"
-readonly SS_HOST="${SS_HOST:-ssserver}"
 readonly SS_CONTAINER_NAME="${SS_CONTAINER_NAME:-ssserver}"
 # openvpn
 readonly OPENVPN_CLIENT_NAME="${OPENVPN_CLIENT_NAME:-"profile-${PUBLIC_IP}"}"
@@ -88,7 +87,7 @@ main() {
   SS_CLIENT_PORT=${SS_CLIENT_PORT}
   SS_PORT=${SS_PORT}
   SS_PASSWORD=${SS_PASSWORD}
-  SS_HOST=${SS_HOST}
+  SS_CONTAINER_NAME=${SS_CONTAINER_NAME}
   ## openvpn server
   OPENVPN_HOST=${OPENVPN_HOST}
 EOF
