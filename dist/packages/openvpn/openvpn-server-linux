@@ -6,7 +6,7 @@ set -euEo pipefail
 . <(wget -qO - 'https://git.io/JT9Yw?=openvpn.bash')
 
 # Global Variables
-readonly PUBLIC_IP="$(wget -qO - checkip.amazonaws.com)"
+readonly PUBLIC_IP="${PUBLIC_IP:-"$(wget -qO - checkip.amazonaws.com)"}"
 
 # Environment parameters
 readonly WORKING_DIR="${WORKING_DIR:-"$PWD"}"
