@@ -17,7 +17,7 @@ readonly SS_CONTAINER_NAME="${SS_CONTAINER_NAME:-ssserver}"
 # openvpn
 readonly OPENVPN_CLIENT_NAME="${OPENVPN_CLIENT_NAME:-"profile-${PUBLIC_IP}"}"
 readonly OPENVPN_HOST="${OPENVPN_HOST:-openvpn}"
-readonly OPENVPN_PROTOCOL="${OPENVPN_PROTOCOL:-udp}"
+readonly OPENVPN_PROTOCOL="${OPENVPN_PROTOCOL:-tcp}"
 readonly OPENVPN_CONTAINER_NAME="${OPENVPN_CONTAINER_NAME:-openvpn}"
 
 # Global Variables
